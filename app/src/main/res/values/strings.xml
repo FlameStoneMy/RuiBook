@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">RuiBook</string>
+
+    <string name="page_num">page %d</string>
+    <string name="menu">Menu</string>
+    <string name="consecutive_read">Consecutive Read</string>
+    <string name="repeat_read">Repeat Read</string>
+
+    <string name="get_click_read_book">Get Free Click &amp; Read Book</string>
+    <string name="click_read_book">Click &amp; Read Book</string>
+    <string name="click_read">Click &amp; Read</string>
+    <string name="click_read_start">Start Click &amp; Read</string>
+    <string name="read_test">Read Test</string>
+
+    <string name="add_book">Add</string>
+    <string name="remove_book">Remove</string>
+
+    <string name="primary">Primary</string>
+    <string name="junior">Junior</string>
+    <string name="senior">Senior</string>
+
+    <string name="grade_one">Grade One</string>
+    <string name="grade_two">Grade Two</string>
+    <string name="grade_three">Grade Three</string>
+    <string name="grade_four">Grade Four</string>
+    <string name="grade_five">Grade Five</string>
+    <string name="grade_six">Grade Six</string>
+    <string name="junior_one">Junior One</string>
+    <string name="junior_two">Junior Two</string>
+    <string name="junior_three">Junior Three</string>
+    <string name="senior_one">Senior One</string>
+    <string name="senior_two">Senior Two</string>
+    <string name="senior_three">Senior Three</string>
+    <string name="others">Others</string>
+
+    <string name="first_semester">1th</string>
+    <string name="second_semester">2nd</string>
+    <string name="summer_vacation">Summer</string>
+    <string name="winter_vacation">Winter</string>
+
+    <string name="repeat_read_step1">Step 1: please select the start sentence.</string>
+    <string name="repeat_read_step2">Step 2: please select the end sentence.</string>
+    <string name="repeat_read_desc">(Select same sentence if single sentence repeat required.)</string>
+    <string name="exit">Exit</string>
+
+    <string name="math">Math</string>
+    <string name="chinese">Chinese</string>
+    <string name="english">English</string>
+    <string name="morality">Morality</string>
+    <string name="history">History</string>
+    <string name="geography">Geography</string>
+    <string name="chemistry">Chemistry</string>
+    <string name="physics">Physics</string>
+    <string name="biology">Biology</string>
+    <string name="science">Science</string>
+    <string name="volume">Volume</string>
+    <string name="fine_arts">Fine Arts</string>
+    <string name="write">Write</string>
+
+    <string name="add_book_hint">Click to add your book</string>
+    <string name="add_pending">Add Pending</string>
+
+    <string name="guide1_1">First, please tell me your grade.</string>
+    <string name="guide1_2">I\'ll provide you proper content.</string>
+    <string name="guide2_1">Ok, next</string>
+    <string name="guide2_2">which nickname will you use?</string>
+    <string name="guide2_3">Select a nickname you like.</string>
+
+    <string name="boy">Boy</string>
+    <string name="girl">Girl</string>
+
+    <string name="next">Next</string>
+    <string name="enter_rui_book">Enter RuiBook</string>
+    <string name="change">Change</string>
+
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
+
+    <string name="study_calendar">Calendar</string>
+
+    <string name="no_network_desc">It seems you are not connected to the internet.</string>
+    <string name="turn_on_internet">Turn On Internet</string>
+    <string name="error_desc">Oops.. Related content not found.</string>
+    <string name="retry">Retry</string>
+
+    <string name="storage_perm_guide">Dear student, some learning contents will be downloaded to your device for better experience. Please grant Read/Write Storage Permission later.</string>
+    <string name="i_know">I know</string>
+
+    <string name="adjust_speed">Adjust Speed</string>
+    <string name="show_translation">Show Translation</string>
+    <string name="show_click_read_borders">Show Click Read Borders</string>
+
+    <string name="loading">Loading...</string>
+    <string name="downloading">Downloading, please wait.</string>
+    <string name="first_page">Current page is the first page.</string>
+    <string name="last_page">Current page is the last page.</string>
+
+    <string name="op_succ">Operation succeeded.</string>
+</resources>

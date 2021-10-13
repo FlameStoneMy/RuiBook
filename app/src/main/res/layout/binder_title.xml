@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="ad"
+    android:textSize="18sp"
+    android:textColor="@color/_333333"
+    android:layout_marginTop="18dp"
+    android:layout_marginBottom="18dp"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="18dp"
+    />

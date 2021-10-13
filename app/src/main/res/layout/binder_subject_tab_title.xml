@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    >
+    <com.ruitech.bookstudy.widget.RoundAngleTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        app:bgRadius="6dp"
+        android:layout_gravity="center"
+        />
+</FrameLayout>

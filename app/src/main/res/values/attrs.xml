@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundAngleImageView">
+        <attr name="radius" format="dimension"/>
+        <attr name="round_angle_orientation" format="enum">
+            <enum name="all" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="top" value="2"/>
+            <enum name="right" value="3"/>
+            <enum name="bottom" value="4"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="RoundAngleTextView">
+        <attr name="bgRadius" format="dimension"/>
+        <attr name="bgColor" format="color" />
+        <attr name="strokeWidth" format="dimension"/>
+        <attr name="strokeColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleTextView">
+        <attr name="circleBgColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="BookView">
+        <attr name="mode" format="enum">
+            <enum name="def" value="0"/>
+            <enum name="add_pending" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TabPageIndicator">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="pstsIsShowdivider" format="boolean" />
+        <attr name="pstsTextSize" format="dimension" />
+        <attr name="pstsTextHideSize" format="dimension" />
+        <attr name="pstsTextColor" format="color" />
+        <attr name="pstsTextHideColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="DrawableTextView">
+        <attr name="leftDrawableWidth" format="reference|dimension"/>
+        <attr name="rightDrawableWidth" format="reference|dimension"/>
+        <attr name="topDrawableWidth" format="reference|dimension"/>
+        <attr name="bottomDrawableWidth" format="reference|dimension"/>
+
+        <attr name="leftDrawableHeight" format="reference|dimension"/>
+        <attr name="rightDrawableHeight" format="reference|dimension"/>
+        <attr name="topDrawableHeight" format="reference|dimension"/>
+        <attr name="bottomDrawableHeight" format="reference|dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="GifView">
+        <attr name="gifLoop" format="boolean" />
+        <attr name="gifSrc" format="reference" />
+    </declare-styleable>
+</resources>

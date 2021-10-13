@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp" >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/adjust_speed_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/speed_seekbar"
+        app:layout_constraintBottom_toBottomOf="@id/scale1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/speed_seekbar"
+        android:text="@string/adjust_speed"
+        android:textColor="@color/_7b7d82"
+        android:textSize="14sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/speed_seekbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/adjust_speed_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/adjust_speed_tv"
+        android:layout_marginLeft="8dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/scale1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toLeftOf="@id/speed_seekbar"
+        app:layout_constraintTop_toBottomOf="@id/speed_seekbar"
+        android:layout_marginTop="5dp"
+        android:text="0.5x"
+        android:textSize="10sp"
+        android:textColor="@color/_5e5e5e"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/scale2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/scale1"
+        app:layout_constraintRight_toLeftOf="@id/scale3"
+        app:layout_constraintTop_toTopOf="@id/scale1"
+        app:layout_constraintBottom_toBottomOf="@id/scale1"
+        android:text="1x"
+        android:textSize="10sp"
+        android:textColor="@color/_5e5e5e"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/scale3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/scale2"
+        app:layout_constraintRight_toLeftOf="@id/scale4"
+        app:layout_constraintTop_toTopOf="@id/scale1"
+        app:layout_constraintBottom_toBottomOf="@id/scale1"
+        android:text="1.5x"
+        android:textSize="10sp"
+        android:textColor="@color/_5e5e5e"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/scale4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@id/speed_seekbar"
+        app:layout_constraintTop_toTopOf="@id/scale1"
+        app:layout_constraintBottom_toBottomOf="@id/scale1"
+        android:text="2x"
+        android:textSize="10sp"
+        android:textColor="@color/_5e5e5e"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/show_translation_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/adjust_speed_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/show_translation_switch"
+        android:text="@string/show_translation"
+        android:textColor="@color/_7b7d82"
+        android:textSize="14sp"
+        android:layout_marginTop="36dp"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/show_translation_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/show_translation_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/show_translation_tv"
+        app:layout_constraintBottom_toBottomOf="@id/show_translation_tv"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginLeft="8dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/show_click_read_borders_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/show_translation_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/show_click_read_borders_switch"
+        android:text="@string/show_click_read_borders"
+        android:textColor="@color/_7b7d82"
+        android:textSize="14sp"
+        android:layout_marginTop="36dp"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/show_click_read_borders_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/show_click_read_borders_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/show_click_read_borders_tv"
+        app:layout_constraintBottom_toBottomOf="@id/show_click_read_borders_tv"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginLeft="8dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">小睿学习</string>
+
+    <string name="page_num">第%d页</string>
+    <string name="menu">目录</string>
+    <string name="consecutive_read">连续听读</string>
+    <string name="repeat_read">复读</string>
+
+    <string name="get_click_read_book">获取免费教材点读</string>
+    <string name="click_read_book">点读教材</string>
+    <string name="click_read">点读</string>
+    <string name="click_read_start">开始点读</string>
+    <string name="read_test">评测</string>
+
+    <string name="add_book">添加课本</string>
+    <string name="remove_book">取消使用</string>
+
+    <string name="primary">小学</string>
+    <string name="junior">初中</string>
+    <string name="senior">高中</string>
+
+    <string name="grade_one">一年级</string>
+    <string name="grade_two">二年级</string>
+    <string name="grade_three">三年级</string>
+    <string name="grade_four">四年级</string>
+    <string name="grade_five">五年级</string>
+    <string name="grade_six">六年级</string>
+    <string name="junior_one">初一</string>
+    <string name="junior_two">初二</string>
+    <string name="junior_three">初三</string>
+    <string name="senior_one">高一</string>
+    <string name="senior_two">高二</string>
+    <string name="senior_three">高三</string>
+    <string name="others">其它</string>
+
+    <string name="first_semester">上</string>
+    <string name="second_semester">下</string>
+    <string name="summer_vacation">暑</string>
+    <string name="winter_vacation">寒</string>
+
+    <string name="repeat_read_step1">第一步：请选择一句图中的话作为开始句</string>
+    <string name="repeat_read_step2">第二步：请选择一句图中的话作为结束句</string>
+    <string name="repeat_read_desc">（单句复读，起始和结束请选择同样方框）</string>
+    <string name="exit">退出</string>
+
+    <string name="math">数学</string>
+    <string name="chinese">语文</string>
+    <string name="english">英语</string>
+    <string name="morality">道德</string>
+    <string name="history">历史</string>
+    <string name="geography">地理</string>
+    <string name="chemistry">化学</string>
+    <string name="physics">物理</string>
+    <string name="biology">生物</string>
+    <string name="science">科学</string>
+    <string name="volume">合订本</string>
+    <string name="fine_arts">美术</string>
+    <string name="write">写字</string>
+
+    <string name="add_book_hint">点击添加你的教材</string>
+    <string name="add_pending">待添加</string>
+
+    <string name="guide1_1">首先，请告诉我你的年级</string>
+    <string name="guide1_2">我将为你推荐更合适的学习内容</string>
+    <string name="guide2_1">好啦，接下来</string>
+    <string name="guide2_2">我怎么称呼你呢？</string>
+    <string name="guide2_3">选择一个你喜欢的名字</string>
+
+    <string name="boy">男孩</string>
+    <string name="girl">女孩</string>
+
+    <string name="next">下一步</string>
+    <string name="enter_rui_book">进入小书宝</string>
+    <string name="change">换一换</string>
+
+    <string name="mon">一</string>
+    <string name="tue">二</string>
+    <string name="wed">三</string>
+    <string name="thu">四</string>
+    <string name="fri">五</string>
+    <string name="sat">六</string>
+    <string name="sun">日</string>
+
+    <string name="study_calendar">学习日历</string>
+
+    <string name="no_network_desc">似乎没有接入互联网。</string>
+    <string name="turn_on_internet">开启网络</string>
+    <string name="error_desc">天啦噜～没有找到相关的内容</string>
+    <string name="retry">重试</string>
+
+    <string name="storage_perm_guide">亲爱的同学，为了保障最佳的使用体验，将为你下载一些学习内容，请稍后授予储存权限。</string>
+    <string name="i_know">我知道了</string>
+
+    <string name="adjust_speed">调节语速</string>
+    <string name="show_translation">显示翻译</string>
+    <string name="show_click_read_borders">显示点读框</string>
+
+    <string name="loading">加载中...</string>
+    <string name="downloading">正在下载，请稍候。</string>
+    <string name="first_page">当前页码为第一页。</string>
+    <string name="last_page">当前页码为最后一页。</string>
+
+    <string name="op_succ">修改成功。</string>
+</resources>
