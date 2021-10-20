@@ -6,17 +6,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 
+import com.ruitech.bookstudy.desktop.DesktopActivity;
+import com.ruitech.bookstudy.desktop.GuideActivity;
 import com.ruitech.bookstudy.guide.GradeGuideActivity;
-import com.ruitech.bookstudy.homepage.HomeActivity;
+import com.ruitech.bookstudy.utils.NetworkUtil;
 import com.ruitech.bookstudy.utils.StatusBarUtil;
-import com.ruitech.bookstudy.widget.RuiDiffUtil;
-
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DiffUtil;
-import me.drakeet.multitype.MultiTypeAdapter;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -35,10 +32,16 @@ public class SplashActivity extends AppCompatActivity {
             switch (msg.what) {
                 case MSG_FINISH:
                     if (TextUtils.isEmpty(RuiPreferenceUtil.getNickname())) {
-                        GradeGuideActivity.start(SplashActivity.this);
+                        if (NetworkUtil.isNetWorkConnected()) {
+                            GradeGuideActivity.start(SplashActivity.this);
+                        } else {
+                            GuideActivity.start(SplashActivity.this);
+                        }
                     } else {
-                        HomeActivity.start(SplashActivity.this);
+                        DesktopActivity.start(SplashActivity.this);
+//                        HomeActivity.start(SplashActivity.this);
                     }
+//                    DesktopActivity.start(SplashActivity.this);
                     finish();
                     break;
             }

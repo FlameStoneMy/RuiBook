@@ -5,7 +5,7 @@ import com.ruitech.bookstudy.bean.Grade;
 import com.ruitech.bookstudy.bean.Subject;
 
 public class Const {
-    public static final String BASE_URL = "https://test-api.bendiclass.com/external";
+    public static final String BASE_URL = "https://api.bendiclass.com/external"; //
 
     public static final String BOOK_QUERY_URL = BASE_URL + "/textbook/v1/getTextbookListByLabel?";
     public static final String getBookQueryUrl(Subject subject, Grade grade) {
@@ -25,4 +25,9 @@ public class Const {
         return HOME_PAGE_URL + grade.id;
     }
 
+
+    private static final String UPGRADE_URL = "https://test-api.bendiclass.com/external" + "/boxVersion/v1/queryLatestVersion?version=";
+    public static final String getUpgradeUrl(long version) {
+        return UPGRADE_URL + version;
+    }
 }

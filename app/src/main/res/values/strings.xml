@@ -101,4 +101,9 @@
     <string name="last_page">Current page is the last page.</string>
 
     <string name="op_succ">Operation succeeded.</string>
+
+    <string name="version_upgrade_desc">New version %s detected, please upgrade.</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="upgrading">Upgrading...</string>
 </resources>

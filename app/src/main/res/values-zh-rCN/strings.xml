@@ -101,4 +101,9 @@
     <string name="last_page">当前页码为最后一页。</string>
 
     <string name="op_succ">修改成功。</string>
+
+    <string name="version_upgrade_desc">检测到新版本%s，请立即升级。</string>
+
+    <string name="cancel">取消</string>
+    <string name="upgrading">版本升级中...</string>
 </resources>

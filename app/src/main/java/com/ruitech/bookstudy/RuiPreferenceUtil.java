@@ -72,4 +72,13 @@ public class RuiPreferenceUtil {
     public static final boolean showClickReadBorders() {
         return getOnlineSharedPreference().getBoolean(KEY_SHOW_CLICK_READ_BORDERS, true);
     }
+
+    private static final String KEY_LAST_UPGRADE_TIMESTAMP = "last_upgrade_timestamp";
+    public static final long getLastUpgradeTs() {
+        return getOnlineSharedPreference().getLong(KEY_LAST_UPGRADE_TIMESTAMP, 0L);
+    }
+
+    public static final void setLastUpgradeTs(long ts) {
+        getOnlineSharedPreference().edit().putLong(KEY_LAST_UPGRADE_TIMESTAMP, ts).apply();
+    }
 }

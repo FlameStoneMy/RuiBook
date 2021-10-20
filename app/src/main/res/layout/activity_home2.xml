@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_5120ec">
+
+    <com.ruitech.bookstudy.widget.RoundAngleTextView
+        android:id="@+id/grade_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        app:bgRadius="16dp"
+        app:bgColor="@color/_ffffff"
+        android:drawableRight="@mipmap/drop_triangle"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/grade_five"
+        android:textColor="@color/_479df7"
+        android:textSize="18sp"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="智慧互动课堂"
+        android:textSize="27sp"
+        android:textColor="@color/_ffffff"
+        android:layout_marginTop="23dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/eye_protect"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:layout_constraintRight_toLeftOf="@id/settings"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="33dp"
+        android:layout_marginTop="28dp"
+        android:src="@mipmap/desktop_settings"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/settings"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="33dp"
+        android:layout_marginTop="28dp"
+        android:src="@mipmap/desktop_settings"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

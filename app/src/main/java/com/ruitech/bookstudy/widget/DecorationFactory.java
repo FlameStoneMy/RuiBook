@@ -36,4 +36,27 @@ public class DecorationFactory {
                 dp8, dp8, dp8, dp8,
                 dp4, dp20, dp4, dp20);
     }
+
+    public static RecyclerView.ItemDecoration get30_30_30_30Space0_0_0_0() {
+        int dp30 = UIHelper.dp2px(10);
+        return new SimpleItemDecoration(
+                dp30, dp30, dp30, dp30,
+                dp30, dp30, dp30, dp30);
+    }
+
+    public static RecyclerView.ItemDecoration get22_19_22_19Space0_0_0_19() {
+        int dp22 = UIHelper.dp2px(22);
+        int dp19 = UIHelper.dp2px(19);
+        return new SimpleItemDecoration(
+                dp22, dp19, dp22, dp19,
+                0, 0, 0, dp19);
+    }
+
+    public static RecyclerView.ItemDecoration get9_8_9_8Space0_0_0_8() {
+        int dp9 = UIHelper.dp2px(9);
+        int dp8 = UIHelper.dp2px(8);
+        return new SimpleItemDecoration(
+                dp9, dp8, dp9, dp8,
+                0, 0, 0, dp8);
+    }
 }

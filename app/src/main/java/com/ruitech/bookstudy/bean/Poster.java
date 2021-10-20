@@ -12,19 +12,21 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Poster implements Serializable {
 
+    public static final String TYPE_RAW = "raw";
     public static final String TYPE_PORTRAIT = "portrait";
     public static final String TYPE_LANDSCAPE = "landscape";
     public static final String TYPE_SQUARE = "square";
     private static final long serialVersionUID = 2003792282366703944L;
 
-    private int width = 200;
-    private int height = 200;
+    private int width = -1;
+    private int height = -1;
     private String url = "https://qqcdnpictest.mxplay.com/pic/gc_10/hi/1x1/312x312/gc_10_400_400.webp";
-    private String type = TYPE_PORTRAIT;
+    private String type = TYPE_RAW;
 
     public int getWidth() {
         return width;
@@ -56,6 +58,15 @@ public class Poster implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public static List<Poster> from(String url) {
+        Poster poster = new Poster();
+//        poster.width = -1;s
+//        poster.height = -1;
+        poster.url = url;
+//        poster.type = TYPE_RAW;
+        return Collections.singletonList(poster);
     }
 
     public static Poster initFromJson(JSONObject jsonObject) {

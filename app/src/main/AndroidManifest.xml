@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
         android:name=".App"
@@ -25,12 +27,32 @@
         </activity>
         <activity android:name=".guide.NickNameGuideActivity">
         </activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".desktop.DesktopActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".desktop.CategoryActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".desktop.AlbumActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".desktop.PlayActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".desktop.GuideActivity"
+            android:screenOrientation="landscape"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ruitech.bookstudy.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rui_share_file_paths" />
+        </provider>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
+import com.ruitech.bookstudy.desktop.DesktopActivity;
 import com.ruitech.bookstudy.homepage.HomeActivity;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.RuiPreferenceUtil;
@@ -53,7 +54,8 @@ public class NickNameGuideActivity extends AbsGuideActivity<NicknameHelper> {
     protected void onNextClicked() {
         RuiPreferenceUtil.setNickname(guideHelper.getCurrNickname());
         RuiPreferenceUtil.setGender(guideHelper.getCurrGender());
-        HomeActivity.start(this);
+//        HomeActivity.start(this);
+        DesktopActivity.start(this);
         finish();
     }
 }

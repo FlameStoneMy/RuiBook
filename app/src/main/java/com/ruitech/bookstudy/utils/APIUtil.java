@@ -1,11 +1,15 @@
 package com.ruitech.bookstudy.utils;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class APIUtil {
@@ -15,9 +19,25 @@ public class APIUtil {
         return get(NetworkUtil.getClient(), httpUrl);
     }
 
+    public static Response postResponse(String url, JSONObject jsonObject) throws IOException, UrlInvalidException {
+        HttpUrl httpUrl = getHttpUrl(url);
+        return post(NetworkUtil.getClient(), httpUrl, jsonObject);
+    }
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
     private static Response get(OkHttpClient client, HttpUrl httpUrl) throws IOException {
         Request.Builder builder = new Request.Builder();
         builder.url(httpUrl);
+
+        Request request = builder.build();
+        return execute(client, request);
+    }
+
+    private static Response post(OkHttpClient client, HttpUrl httpUrl, JSONObject jsonObject) throws IOException {
+        Request.Builder builder = new Request.Builder();
+        builder.url(httpUrl);
+        builder.post(RequestBody.create(JSON, jsonObject.toString()));
 
         Request request = builder.build();
         return execute(client, request);

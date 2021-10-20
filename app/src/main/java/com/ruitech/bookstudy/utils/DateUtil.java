@@ -1,5 +1,6 @@
 package com.ruitech.bookstudy.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.Arrays;
@@ -31,5 +32,58 @@ public class DateUtil {
         }
 //        Log.d(TAG, "getCurrWeekDate: " + Arrays.toString(ret));
         return new Pair<>(dayOfWeek - 1, ret);
+    }
+
+    public static String parseDuration(int duration) {
+        duration /= 1000;
+        int hour = duration / 3600;
+        String secondStr = null;
+        String hourStr = null;
+        if (hour > 0) {
+            hourStr = String.valueOf(hour);
+        }
+
+        int minute = (duration % 3600) / 60;
+        String minuteStr = null;
+        if (minute > 0) {
+            minuteStr = String.valueOf(minute);
+        }
+
+        int second = (duration % 3600) % 60;
+        secondStr = String.valueOf(second);
+
+        StringBuilder builder = new StringBuilder();
+        if (!TextUtils.isEmpty(hourStr)) {
+            builder.append(hourStr);
+            builder.append(":");
+        }
+
+        if (TextUtils.isEmpty(minuteStr)) {
+            if (builder.length() == 0) {
+                builder.append("0:");
+            } else {
+                builder.append("00:");
+            }
+        } else {
+            if (builder.length() > 0 && minuteStr.length() == 1) {
+                builder.append("0");
+                builder.append(minuteStr);
+            } else {
+                builder.append(minuteStr);
+            }
+            builder.append(":");
+        }
+
+        if (TextUtils.isEmpty(secondStr)) {
+            builder.append("00");
+        } else {
+            if (secondStr.length() == 1) {
+                builder.append("0");
+            }
+
+            builder.append(secondStr);
+        }
+
+        return builder.toString();
     }
 }

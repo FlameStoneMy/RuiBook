@@ -8,4 +8,22 @@
         <item name="windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="dialog_translucent" parent="Theme.Design.Light.BottomSheetDialog">
+<!--        <item name="android:windowFrame">@null</item>&lt;!&ndash; 边框 &ndash;&gt;-->
+<!--        <item name="android:windowIsFloating">true</item>&lt;!&ndash; 是否悬浮在activity上 &ndash;&gt;-->
+<!--        <item name="android:windowIsTranslucent">false</item>&lt;!&ndash; 半透明 &ndash;&gt;-->
+<!--        <item name="android:windowNoTitle">true</item>&lt;!&ndash; 无标题 &ndash;&gt;-->
+<!--        <item name="android:windowBackground">@android:color/transparent</item>&lt;!&ndash; 背景透明 &ndash;&gt;-->
+<!--        <item name="android:backgroundDimEnabled">false</item>&lt;!&ndash; 模糊 &ndash;&gt;-->
+<!--        <item name="android:backgroundDimAmount">0.6</item>&lt;!&ndash; 灰度 &ndash;&gt;-->
+<!--        <item name="android:windowContentOverlay">@null</item>&lt;!&ndash; 对话框是否有遮盖 &ndash;&gt;-->
+
+
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>

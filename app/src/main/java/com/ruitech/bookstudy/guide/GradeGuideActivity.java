@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.RuiPreferenceUtil;
+import com.ruitech.bookstudy.desktop.DesktopActivity;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -50,7 +51,8 @@ public class GradeGuideActivity extends AbsGuideActivity<GradeHelper> {
     @Override
     protected void onNextClicked() {
         RuiPreferenceUtil.setGrade(guideHelper.getCurrGrade());
-        NickNameGuideActivity.start(this);
+//        NickNameGuideActivity.start(this);
+        DesktopActivity.start(this);
         finish();
     }
 }
