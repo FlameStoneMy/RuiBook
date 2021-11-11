@@ -54,10 +54,11 @@ public class PageImpl {
             File coordinateFile = BookUtil.getCoordinateFile(bookId, bookGenuineId, pageNum);
             // parse Char.txt
             File translationFile = BookUtil.getTranslationFile(bookId, bookGenuineId, pageNum);
+            boolean translationExist = translationFile.exists();
             Log.d(TAG, "parseCoordinate1 " + coordinateFile.getAbsolutePath() + " " + this);
             if (coordinateFile.exists()) {
                 Log.d(TAG, "parseCoordinate2 " + this);
-                if (translationFile.exists()) {
+//                if (translationFile.exists()) {
                     Log.d(TAG, "parseCoordinate3 " + this);
                     int num = 0;
                     ArrayList<Float> leftList = new ArrayList<>();
@@ -70,11 +71,14 @@ public class PageImpl {
                     BufferedReader bufferedReader1 = null;
                     try {
                         bufferedReader = new BufferedReader(new FileReader(coordinateFile));
-                        bufferedReader1 = new BufferedReader(new FileReader(translationFile));
+                        if (translationExist) {
+                            bufferedReader1 = new BufferedReader(new FileReader(translationFile));
+                        }
                         String line;
-                        String line1;
-                        while ((line = bufferedReader.readLine()) != null && (line1 = bufferedReader1.readLine()) != null) {
-                            if (line.endsWith("#") && line1.endsWith("#")) {
+                        String line1 = null;
+                        while ((line = bufferedReader.readLine()) != null &&
+                                (!translationExist || (line1 = bufferedReader1.readLine()) != null)) {
+                            if (line.endsWith("#") && (!translationExist || line1.endsWith("#"))) {
                                 continue;
                             }
                             String[] arr = line.split(",");
@@ -87,7 +91,7 @@ public class PageImpl {
                             rightList.add(Float.parseFloat(arr[2]));
                             bottomList.add(Float.parseFloat(arr[3]));
 
-                            if (line1.equals("-")) {
+                            if (!translationExist || line1.equals("-")) {
                                 translationList.add(null);
                             } else {
                                 translationList.add(line1);
@@ -117,9 +121,9 @@ public class PageImpl {
                     } else {
                         locationGroup = new LocationGroup();
                     }
-                } else {
-                    locationGroup = new LocationGroup();
-                }
+//                } else {
+//                    locationGroup = new LocationGroup();
+//                }
                 ret = true;
             }
 

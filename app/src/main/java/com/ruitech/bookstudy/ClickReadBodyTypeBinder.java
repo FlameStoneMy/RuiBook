@@ -345,7 +345,7 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
 
         @Override
         public void onPageDetailsRet(int pageNum, LocationGroup locationGroup) {
-            Log.d(TAG, "onPageDetailsRet: " + pageNum);
+            Log.d(TAG, "onPageDetailsRet: " + pageNum + " " + locationGroup.num);
             List list = adapter.getItems();
             if (!ListUtils.isEmpty(list)) {
                 for (int i = 0; i < list.size(); i++) {
