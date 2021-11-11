@@ -97,7 +97,8 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
         private ImageView playPauseImg;
         private View repeatReadGuideContainer;
         private TextView repeatReadGuideTitle;
-        
+
+        private View menuImg, menuTv;
         public ViewHolder(@NonNull View itemView, Book book, LifecycleOwner lifecycleOwner) {
             super(itemView);
             this.book = book;
@@ -110,9 +111,9 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             consecutiveReadImg.setOnClickListener(this);
             View consecutiveReadTv = itemView.findViewById(R.id.consecutive_read_tv);
             consecutiveReadTv.setOnClickListener(this);
-            View menuImg = itemView.findViewById(R.id.menu_img);
+            menuImg = itemView.findViewById(R.id.menu_img);
             menuImg.setOnClickListener(this);
-            View menuTv = itemView.findViewById(R.id.menu_tv);
+            menuTv = itemView.findViewById(R.id.menu_tv);
             menuTv.setOnClickListener(this);
             View repeatReadImg = itemView.findViewById(R.id.repeat_read_img);
             repeatReadImg.setOnClickListener(this);
@@ -168,7 +169,9 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                         }
                     }
                     if (setOverviewPage(position)) {
-                        menuBottomPanelHelper.setPagePosition(position);
+                        if (menuBottomPanelHelper != null) {
+                            menuBottomPanelHelper.setPagePosition(position);
+                        }
                     }
                 }
             });
@@ -186,16 +189,19 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             paintDrawable.setCornerRadius(UIHelper.dp2px(16));
             paintDrawable.getPaint().setColor(itemView.getResources().getColor(R.color._e9f4fb));
             repeatReadGuideContainer.setBackground(paintDrawable);
-            repeatReadGuideContainer.setVisibility(View.INVISIBLE);
+            repeatReadGuideContainer.setAlpha(0F);
+//            repeatReadGuideContainer.setVisibility(View.INVISIBLE);
 
             repeatReadGuideContainer.findViewById(R.id.exit).setOnClickListener(this);
             repeatReadGuideContainer.findViewById(R.id.icon).setOnClickListener(this);
 
             repeatReadGuideTitle = repeatReadGuideContainer.findViewById(R.id.title);
 
-            overviewView.setVisibility(View.INVISIBLE);
+            overviewView.setAlpha(0F);
+//            overviewView.setVisibility(View.INVISIBLE);
             for (View v : playViewList) {
-                v.setVisibility(View.INVISIBLE);
+//                v.setVisibility(View.INVISIBLE);
+                v.setAlpha(0F);
             }
 
             Log.d(TAG, "overviewView: " + overviewView.getHeight() + " " + UIHelper.dp2px(120));
@@ -216,7 +222,14 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             android.util.Log.d(TAG, "bindData: ");
 
             new PageSummaryTask(bookId, bookGenuineId, this).executeOnExecutor(Executors.io());
-            menuBottomPanelHelper = new MenuBottomPanelHelper(context, this);
+//            menuBottomPanelHelper = new MenuBottomPanelHelper(context, this);
+        }
+
+        private MenuBottomPanelHelper getMenuBottomPanelHelper() {
+            if (menuBottomPanelHelper == null) {
+                menuBottomPanelHelper = new MenuBottomPanelHelper(context, this);
+            }
+            return menuBottomPanelHelper;
         }
 
         @Override
@@ -237,7 +250,9 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                     break;
                 case R.id.menu_img:
                 case R.id.menu_tv:
-                    menuBottomPanelHelper.showBottomPanel();
+                    if (menuBottomPanelHelper != null) {
+                        menuBottomPanelHelper.showBottomPanel();
+                    }
                     break;
                 case R.id.repeat_read_img:
                 case R.id.repeat_read_tv:
@@ -299,14 +314,28 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             Log.d(TAG, "onPageSummary: " + pageList.size());
             RuiDiffUtil.onNewData(adapter, pageList);
             RuiDiffUtil.onNewData(overViewAdapter, PageUI.from(pageList));
-            menuBottomPanelHelper.bindData(book, menuItemList);
+
+            if (menuItemList.isEmpty()) {
+//                menuImg.setEnabled(false);
+//                menuTv.setEnabled(false);
+                menuImg.setVisibility(View.INVISIBLE);
+                menuTv.setVisibility(View.INVISIBLE);
+            } else {
+//                menuImg.setEnabled(true);
+//                menuTv.setEnabled(true);
+                menuImg.setVisibility(View.VISIBLE);
+                menuTv.setVisibility(View.VISIBLE);
+                getMenuBottomPanelHelper().bindData(book, menuItemList);
+            }
         }
 
         private MenuBottomPanelHelper menuBottomPanelHelper;
 
         @Override
         public void onPageSelectedFromMenu(Page page) {
-            menuBottomPanelHelper.hideBottomPanel();
+            if (menuBottomPanelHelper != null) {
+                menuBottomPanelHelper.hideBottomPanel();
+            }
             pagePager.setCurrentItem(page.getOrdinal(), true);
             Log.d(TAG, "setCurrentItem from menu: " + page.getPageNum());
         }
@@ -314,7 +343,9 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
         @Override
         public void onPageSelectedFromOverview(int pos) {
             if (setOverviewPage(pos)) {
-                menuBottomPanelHelper.setPagePosition(pos);
+                if (menuBottomPanelHelper != null) {
+                    menuBottomPanelHelper.setPagePosition(pos);
+                }
                 pagePager.setCurrentItem(pos, true);
                 Log.d(TAG, "setCurrentItem from overview: " + pos);
             }
@@ -578,7 +609,7 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                     case HIDING:
                         for (View view : getOldViewList()) {
                             view.setAlpha(0F);
-                            view.setVisibility(View.VISIBLE);
+//                            view.setVisibility(View.VISIBLE);
                         }
                         break;
                 }
@@ -597,7 +628,8 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                 switch (panelState) {
                     case HIDING:
                         for (View view : newViewList) {
-                            view.setVisibility(View.INVISIBLE);
+//                            view.setVisibility(View.INVISIBLE);
+                            view.setAlpha(0F);
                         }
                         panelState = PanelState.HIDDEN;
                         for (View view : getOldViewList()) {
@@ -611,8 +643,9 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                     case SHOWING:
                         panelState = PanelState.SHOWN;
                         for (View view : getOldViewList()) {
-                            view.setAlpha(1F);
-                            view.setVisibility(View.INVISIBLE);
+                            view.setAlpha(0F);
+//                            view.setAlpha(1F);
+//                            view.setVisibility(View.INVISIBLE);
                         }
                         if (removeOld) {
                             Log.d(TAG, "bottomViewList remove2: " + (bottomViewList.size() - 1));
@@ -655,14 +688,15 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             private boolean removeOld;
             public boolean tryShowAnim(AnimLayer oldLayer, AnimLayer newLayer, boolean removeOld) {
                 Log.d(TAG, "tryShowAnim: " + panelState + " " + oldLayer + " " + newLayer + " " + removeOld);
-                new Exception().printStackTrace();
+//                new Exception().printStackTrace();
 //                if (panelState == PanelState.HIDDEN) {
                 if (!isAnimating()) {
                     this.removeOld = removeOld;
                     bind(oldLayer, newLayer);
                     for (View view : newViewList) {
                         view.setTranslationY(overviewAnimTotal);
-                        view.setVisibility(View.VISIBLE);
+//                        view.setVisibility(View.VISIBLE);
+                        view.setAlpha(1F);
                     }
                     panelState = PanelState.SHOWING;
                     startAnimInternal();

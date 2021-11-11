@@ -154,14 +154,15 @@ public class BookView extends View implements ImageLoadingListener {
                 loadingStartTs = currTs;
             }
 
-            long curr = (currTs - LOADING_ANIM_DURATION / 4 - loadingStartTs) % LOADING_ANIM_DURATION;
+            long curr = (currTs + 3 * LOADING_ANIM_DURATION / 4 - loadingStartTs) % LOADING_ANIM_DURATION;
             float y, deltaY;
 
             if (curr < LOADING_ANIM_DURATION / 2) {
-                deltaY = - loadingRadius / 2 + loadingRadius * curr / LOADING_ANIM_DURATION / 2;
+                deltaY = - loadingRadius / 2 + loadingRadius * curr / (LOADING_ANIM_DURATION / 2);
             } else {
-                deltaY = loadingRadius / 2 - loadingRadius * curr / LOADING_ANIM_DURATION / 2;
+                deltaY = loadingRadius / 2 - loadingRadius * (curr - LOADING_ANIM_DURATION / 2) / (LOADING_ANIM_DURATION / 2);
             }
+            android.util.Log.d(TAG, "onDraw: " + curr + " " + deltaY + " " + (LOADING_ANIM_DURATION / 2));
             y = loadingCenterY + deltaY;
             adjustTmpLoadingRectF(deltaY);
 
