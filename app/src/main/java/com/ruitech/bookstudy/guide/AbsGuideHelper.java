@@ -6,6 +6,7 @@ import android.graphics.drawable.PaintDrawable;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.guide.task.TaskCallback;
 import com.ruitech.bookstudy.utils.UIHelper;
+import com.ruitech.bookstudy.widget.DecorationFactory;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,7 @@ public abstract class AbsGuideHelper {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.addItemDecoration(DecorationFactory.get0_0_0_0Space0_0_0_68());
 
         adapter = new MultiTypeAdapter();
         initAdapter();

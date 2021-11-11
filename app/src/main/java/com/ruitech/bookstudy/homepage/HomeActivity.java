@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.ruitech.bookstudy.BaseActivity;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.RuiPreferenceUtil;
 import com.ruitech.bookstudy.bean.Grade;
 import com.ruitech.bookstudy.bean.Subject;
+import com.ruitech.bookstudy.guide.TaskActivity;
 import com.ruitech.bookstudy.homepage.binder.GradeCalendarHelper;
 import com.ruitech.bookstudy.homepage.binder.SubjectTabBinder;
 import com.ruitech.bookstudy.homepage.binder.SubjectTabTitleBinder;
@@ -33,7 +35,7 @@ import com.ruitech.bookstudy.widget.panelhelper.GradeBottomPanelHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements GradeCalendarHelper.Callback, GradeBottomPanelHelper.Callback, HomePageQueryTask.Callback, SubjectTabTitleBinder.Callback, ISubjectListProvider {
+public class HomeActivity extends TaskActivity implements GradeCalendarHelper.Callback, GradeBottomPanelHelper.Callback, HomePageQueryTask.Callback, SubjectTabTitleBinder.Callback, ISubjectListProvider {
 
     private static final String TAG = "HomeActivity";
 
@@ -52,8 +54,9 @@ public class HomeActivity extends AppCompatActivity implements GradeCalendarHelp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color._4b8afe));
-        setContentView(R.layout.activity_home);
+//        StatusBarUtil.fullScreen(this);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color._4b8afe));
+//        setContentView(R.layout.activity_home);
 
         Grade grade = RuiPreferenceUtil.getGrade();
         gradeCalendarHelper = new GradeCalendarHelper(findViewById(R.id.card_grade_calendar), this);
@@ -67,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements GradeCalendarHelp
 
         gradeBottomPanelHelper = new GradeBottomPanelHelper(this, this);
 
+        this.grade = grade;
         new HomePageQueryTask(grade, this).executeOnExecutor(Executors.network());
 
         bodyViewPager = findViewById(R.id.body_viewpager);
@@ -82,6 +86,21 @@ public class HomeActivity extends AppCompatActivity implements GradeCalendarHelp
         });
     }
 
+//    @Override
+//    protected int getLayoutId() {
+//        return R.layout.activity_home;
+//    }
+
+    @Override
+    protected int getCoreLayoutId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    protected void reload() {
+        new HomePageQueryTask(grade, this).executeOnExecutor(Executors.network());
+    }
+
     private GradeBottomPanelHelper gradeBottomPanelHelper;
 
     @Override
@@ -90,28 +109,38 @@ public class HomeActivity extends AppCompatActivity implements GradeCalendarHelp
         gradeBottomPanelHelper.showBottomPanel();
     }
 
+    private Grade grade;
     @Override
     public void onGradeSelected(Grade grade) {
         Log.d(TAG, "onGradeSelected: " + grade);
+        this.grade = grade;
         new HomePageQueryTask(grade, this).executeOnExecutor(Executors.network());
     }
 
     private int selectedTabPos = -1;
     @Override
     public void onHomePageResult(NetworkResponse ret, GradeCalendarCard gradeCalendarCard, TabsCard<SubjectTab> tabsCard) {
-        RuiPreferenceUtil.setGrade(gradeCalendarCard.grade);
-        subjectTabBinder.setGrade(gradeCalendarCard.grade);
-        gradeCalendarHelper.bindData(gradeCalendarCard);
-
-        subjectList.clear();
-        for (SubjectTab subjectTab : tabsCard.getTabList()) {
-            subjectList.add(subjectTab.getSubject());
+        onLoaded(ret);
+        if (ret != NetworkResponse.RESPONSE_OK) {
+            return;
         }
 
-        RuiDiffUtil.onNewData(bodyAdapter, tabsCard.getTabList());
-        Pair<Integer, List<SubjectTabUI>> pair = SubjectTabUI.from(new ArrayList(tabsCard.getTabList()));
-        selectedTabPos = pair.first;
-        RuiDiffUtil.onNewData(tabTitleAdapter, pair.second);
+        if (gradeCalendarCard != null) {
+            RuiPreferenceUtil.setGrade(gradeCalendarCard.grade);
+            subjectTabBinder.setGrade(gradeCalendarCard.grade);
+            gradeCalendarHelper.bindData(gradeCalendarCard);
+
+            subjectList.clear();
+            for (SubjectTab subjectTab : tabsCard.getTabList()) {
+                subjectList.add(subjectTab.getSubject());
+            }
+
+            RuiDiffUtil.onNewData(bodyAdapter, tabsCard.getTabList());
+            Pair<Integer, List<SubjectTabUI>> pair = SubjectTabUI.from(new ArrayList(tabsCard.getTabList()));
+            selectedTabPos = pair.first;
+            RuiDiffUtil.onNewData(tabTitleAdapter, pair.second);
+        }
+
     }
 
     @Override

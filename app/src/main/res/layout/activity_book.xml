@@ -7,8 +7,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/back_img"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:src="@mipmap/arrow_back"
@@ -19,11 +19,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/setting_img"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:src="@mipmap/settings"
+        android:src="@mipmap/desktop_settings"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="34dp"

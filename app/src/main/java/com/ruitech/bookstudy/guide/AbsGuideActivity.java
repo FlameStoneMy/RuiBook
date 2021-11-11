@@ -60,13 +60,13 @@ public abstract class AbsGuideActivity<T extends AbsGuideHelper> extends TaskAct
     @Override
     protected boolean setCurrLayout(View layout) {
         boolean ret = super.setCurrLayout(layout);
-        if (ret) {
-            if (layout == coreLayout) {
-                StatusBarUtil.setColor(this, getResources().getColor(R.color._02abff));
-            } else {
-                StatusBarUtil.setColor(this, getResources().getColor(android.R.color.transparent));
-            }
-        }
+//        if (ret) {
+//            if (layout == coreLayout) {
+//                StatusBarUtil.setColor(this, getResources().getColor(R.color._6a36cf));
+//            } else {
+//                StatusBarUtil.setColor(this, getResources().getColor(android.R.color.transparent));
+//            }
+//        }
         return ret;
     }
 }

@@ -11,6 +11,7 @@ import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.desktop.AlbumActivity;
 import com.ruitech.bookstudy.desktop.PlayActivity;
 import com.ruitech.bookstudy.desktop.bean.Album;
+import com.ruitech.bookstudy.desktop.bean.Category;
 import com.ruitech.bookstudy.utils.ImageHelper;
 
 import androidx.annotation.NonNull;
@@ -19,10 +20,11 @@ import me.drakeet.multitype.ItemViewBinder;
 
 public class AlbumBinder extends ItemViewBinder<Album, AlbumBinder.ViewHolder> {
 
-    private static final String TAG = "EpisodeBinder";
+    private static final String TAG = "AlbumBinder";
 
-    public AlbumBinder() {
-
+    private Category category;
+    public AlbumBinder(Category category) {
+        this.category = category;
     }
 
     @NonNull
@@ -57,7 +59,7 @@ public class AlbumBinder extends ItemViewBinder<Album, AlbumBinder.ViewHolder> {
 
         @Override
         public void onClick(View v) {
-            AlbumActivity.start(v.getContext(), album);
+            AlbumActivity.start(v.getContext(), category, album);
 //            BookActivity.start(itemView.getContext(), book);
         }
     }

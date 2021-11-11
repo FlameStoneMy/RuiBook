@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 
+import com.ruitech.bookstudy.BaseActivity;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.guide.GradeGuideActivity;
 import com.ruitech.bookstudy.network.NetworkMonitor;
@@ -17,7 +18,7 @@ import com.ruitech.bookstudy.utils.UIHelper;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GuideActivity extends AppCompatActivity implements View.OnClickListener {
+public class GuideActivity extends BaseActivity implements View.OnClickListener {
 
     public static final void start(Context context) {
         Intent intent = new Intent(context, GuideActivity.class);
@@ -28,8 +29,8 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.fullScreen(this);
-        setContentView(R.layout.activity_guide);
+//        StatusBarUtil.fullScreen(this);
+//        setContentView(R.layout.activity_guide);
 
         GradientDrawable containerDrawable = new GradientDrawable();new GradientDrawable();
         containerDrawable.setColors(new int[] {
@@ -53,6 +54,11 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             });
         }
         networkMonitor.start();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_guide;
     }
 
     @Override

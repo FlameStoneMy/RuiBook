@@ -54,18 +54,19 @@ public class DateUtil {
 
         StringBuilder builder = new StringBuilder();
         if (!TextUtils.isEmpty(hourStr)) {
-            builder.append(hourStr);
+            if (hourStr.length() == 1) {
+                builder.append("0");
+                builder.append(hourStr);
+            } else {
+                builder.append(hourStr);
+            }
             builder.append(":");
         }
 
         if (TextUtils.isEmpty(minuteStr)) {
-            if (builder.length() == 0) {
-                builder.append("0:");
-            } else {
-                builder.append("00:");
-            }
+            builder.append("00:");
         } else {
-            if (builder.length() > 0 && minuteStr.length() == 1) {
+            if (minuteStr.length() == 1) {
                 builder.append("0");
                 builder.append(minuteStr);
             } else {

@@ -9,21 +9,16 @@ import com.ruitech.bookstudy.utils.UIHelper;
 
 import androidx.appcompat.app.AppCompatDialog;
 
-public class PermDialog extends AppCompatDialog implements View.OnClickListener {
+public class PermDialog extends BaseDialog implements View.OnClickListener {
     public PermDialog(Context context) {
         super(context, R.style.ThemeDialog);
-
-        Window window = getWindow();
-        window.requestFeature(Window.FEATURE_NO_TITLE);
 
         PaintDrawable paintDrawable = new PaintDrawable();
         paintDrawable.setCornerRadius(UIHelper.dp2px(18));
         paintDrawable.getPaint().setColor(context.getResources().getColor(R.color._ffffff));
-        window.setBackgroundDrawable(paintDrawable);
-        View v = getLayoutInflater().inflate(R.layout.dialog_perm, null);
+        getWindow().setBackgroundDrawable(paintDrawable);
 
         v.findViewById(R.id.action).setOnClickListener(this);
-        setContentView(v);
     }
 
     @Override
@@ -33,5 +28,10 @@ public class PermDialog extends AppCompatDialog implements View.OnClickListener 
                 dismiss();
                 break;
         }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.dialog_perm;
     }
 }

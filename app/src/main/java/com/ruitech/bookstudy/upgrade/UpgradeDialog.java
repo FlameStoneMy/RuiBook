@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.ruitech.bookstudy.BaseDialog;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.utils.Executors;
 import com.ruitech.bookstudy.utils.UIHelper;
@@ -18,7 +19,7 @@ import java.io.File;
 import androidx.appcompat.app.AppCompatDialog;
 import androidx.core.content.FileProvider;
 
-public class UpgradeDialog extends AppCompatDialog implements View.OnClickListener, UpgradeTask.Callback {
+public class UpgradeDialog extends BaseDialog implements View.OnClickListener, UpgradeTask.Callback {
     private UpgradeBean upgradeBean;
 
     private ProgressBar progressBar;
@@ -28,23 +29,25 @@ public class UpgradeDialog extends AppCompatDialog implements View.OnClickListen
         this.upgradeBean = upgradeBean;
 
         Window window = getWindow();
-        window.requestFeature(Window.FEATURE_NO_TITLE);
 
         PaintDrawable paintDrawable = new PaintDrawable();
         paintDrawable.setCornerRadius(UIHelper.dp2px(18));
         paintDrawable.getPaint().setColor(context.getResources().getColor(R.color._ffffff));
         window.setBackgroundDrawable(paintDrawable);
-        View v = getLayoutInflater().inflate(R.layout.dialog_upgrade, null);
 
         progressBar = v.findViewById(R.id.progress_bar);
         progressBar.setProgress(0);
         progressBar.setMax(100);
         progressBar.setVisibility(View.GONE);
         v.findViewById(R.id.action).setOnClickListener(this);
-        setContentView(v);
 
         this.setCanceledOnTouchOutside(false);
         upgradeTask = (UpgradeTask) new UpgradeTask(upgradeBean, this).executeOnExecutor(Executors.io());
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.dialog_upgrade;
     }
 
     private UpgradeTask upgradeTask;

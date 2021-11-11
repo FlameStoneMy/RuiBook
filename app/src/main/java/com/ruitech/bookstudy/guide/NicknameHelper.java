@@ -6,8 +6,11 @@ import com.ruitech.bookstudy.bean.Gender;
 import com.ruitech.bookstudy.guide.binder.GenderTitleBinder;
 import com.ruitech.bookstudy.guide.binder.NicknameBinder;
 import com.ruitech.bookstudy.guide.task.NicknameBaseQueryTask;
+import com.ruitech.bookstudy.guide.task.NicknameBaseQueryWorker;
 import com.ruitech.bookstudy.guide.task.NicknameGenderQueryTask;
+import com.ruitech.bookstudy.guide.task.NicknameGenderQueryWorker;
 import com.ruitech.bookstudy.guide.task.NicknameQueryTask;
+import com.ruitech.bookstudy.guide.task.NicknameQueryWorker;
 import com.ruitech.bookstudy.guide.task.TaskCallback;
 import com.ruitech.bookstudy.uibean.NicknameUI;
 import com.ruitech.bookstudy.utils.Executors;
@@ -22,7 +25,7 @@ import java.util.Map;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NicknameHelper extends AbsGuideHelper implements NicknameBinder.Callback, NicknameBaseQueryTask.Callback, GenderTitleBinder.Callback {
+public class NicknameHelper extends AbsGuideHelper implements NicknameBinder.Callback, NicknameBaseQueryWorker.Callback, GenderTitleBinder.Callback {
     private static final String TAG = "NicknameHelper";
 
     public NicknameHelper(RecyclerView recyclerView, TaskCallback callback) {
@@ -30,7 +33,8 @@ public class NicknameHelper extends AbsGuideHelper implements NicknameBinder.Cal
     }
 
     protected void load() {
-        new NicknameQueryTask(this).executeOnExecutor(Executors.network());
+//        new NicknameQueryTask(this).executeOnExecutor(Executors.network());
+        new NicknameQueryWorker(this).execute();
     }
 
     @Override
@@ -111,7 +115,8 @@ public class NicknameHelper extends AbsGuideHelper implements NicknameBinder.Cal
 
     @Override
     public void onChangeClicked(Gender gender) {
-        new NicknameGenderQueryTask(gender, this).executeOnExecutor(Executors.network());
+//        new NicknameGenderQueryTask(gender, this).executeOnExecutor(Executors.network());
+        new NicknameGenderQueryWorker(gender, this).execute();
     }
 
     @Override

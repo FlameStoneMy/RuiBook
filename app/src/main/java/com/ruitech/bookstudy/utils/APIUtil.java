@@ -1,8 +1,12 @@
 package com.ruitech.bookstudy.utils;
 
+import android.net.Uri;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URI;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;
@@ -14,40 +18,47 @@ import okhttp3.Response;
 
 public class APIUtil {
 
+    private static final String TAG = "APIUtil";
+
     public static Response getResponse(String url) throws IOException, UrlInvalidException {
+        return getResponse(url, null);
+    }
+
+    public static Response getResponse(String url, Map<String, String> headerMap) throws IOException, UrlInvalidException {
         HttpUrl httpUrl = getHttpUrl(url);
-        return get(NetworkUtil.getClient(), httpUrl);
+
+        Request.Builder builder = new Request.Builder();
+        builder.url(httpUrl);
+        if (headerMap != null) {
+            for (Map.Entry<String, String> entry : headerMap.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+
+        Request request = builder.build();
+        return execute(NetworkUtil.getClient(), request);
     }
 
     public static Response postResponse(String url, JSONObject jsonObject) throws IOException, UrlInvalidException {
         HttpUrl httpUrl = getHttpUrl(url);
-        return post(NetworkUtil.getClient(), httpUrl, jsonObject);
-    }
 
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
-    private static Response get(OkHttpClient client, HttpUrl httpUrl) throws IOException {
-        Request.Builder builder = new Request.Builder();
-        builder.url(httpUrl);
-
-        Request request = builder.build();
-        return execute(client, request);
-    }
-
-    private static Response post(OkHttpClient client, HttpUrl httpUrl, JSONObject jsonObject) throws IOException {
         Request.Builder builder = new Request.Builder();
         builder.url(httpUrl);
         builder.post(RequestBody.create(JSON, jsonObject.toString()));
 
         Request request = builder.build();
-        return execute(client, request);
+        return execute(NetworkUtil.getClient(), request);
     }
 
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
     private static Response execute(OkHttpClient client, Request request) throws IOException {
+        android.util.Log.d(TAG, "execute");
         Call call = client.newCall(request);
 
+        android.util.Log.d(TAG, "execute2");
         Response res = call.execute();
-
+        android.util.Log.d(TAG, "execute3");
         return res;
     }
 
@@ -63,7 +74,7 @@ public class APIUtil {
             url = "https:" + url.substring(4);
         }
         try {
-            return HttpUrl.get(url);
+            return HttpUrl.get(URI.create(url));
         } catch (IllegalArgumentException e) {
             throw new UrlInvalidException(e.getMessage());
         }

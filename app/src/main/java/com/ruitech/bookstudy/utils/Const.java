@@ -26,7 +26,7 @@ public class Const {
     }
 
 
-    private static final String UPGRADE_URL = "https://test-api.bendiclass.com/external" + "/boxVersion/v1/queryLatestVersion?version=";
+    private static final String UPGRADE_URL = BASE_URL + "/boxVersion/v1/queryLatestVersion?version=";
     public static final String getUpgradeUrl(long version) {
         return UPGRADE_URL + version;
     }

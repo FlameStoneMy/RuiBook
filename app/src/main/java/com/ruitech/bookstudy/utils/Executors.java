@@ -1,5 +1,6 @@
 package com.ruitech.bookstudy.utils;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
@@ -32,6 +33,8 @@ public class Executors {
 
         return io;
     }
+
+    public static final Executor SIMPLE_THREAD_EXECUTOR  = java.util.concurrent.Executors.newFixedThreadPool(1);
 
     /**
      * used for network requesting, but DO NOT use this for big file upload and download.

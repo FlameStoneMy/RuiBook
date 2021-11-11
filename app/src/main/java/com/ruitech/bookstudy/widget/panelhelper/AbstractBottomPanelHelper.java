@@ -3,6 +3,7 @@ package com.ruitech.bookstudy.widget.panelhelper;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.widget.FrameLayout;
 
+import com.ruitech.bookstudy.App;
 import com.ruitech.bookstudy.BuildConfig;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.utils.KeyboardUtil;
@@ -151,7 +154,16 @@ public abstract class AbstractBottomPanelHelper<T extends ViewGroup & LayoutBind
                     AbstractBottomPanelHelper.this.onBackPressed();
                 }
             };
-            dialog.setContentView(container);
+
+            FrameLayout f = new FrameLayout(context);
+            f.addView(container);
+            View shaderView = new View(context);
+            shaderView.setBackground(new ColorDrawable(context.getResources().getColor(R.color._26ffb334)));
+            f.addView(shaderView);
+
+            shaderView.setVisibility(App.eyeProtectEnabled() ? View.VISIBLE : View.INVISIBLE);
+
+            dialog.setContentView(f);
 
             Window window = dialog.getWindow();
 

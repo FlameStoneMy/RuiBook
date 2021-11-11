@@ -32,8 +32,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/previous_img"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             app:layout_constraintLeft_toLeftOf="@id/page_pager_container"
             app:layout_constraintTop_toTopOf="@id/page_pager_container"
             app:layout_constraintBottom_toBottomOf="@id/page_pager_container"
@@ -42,8 +42,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/next_img"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             app:layout_constraintRight_toRightOf="@id/page_pager_container"
             app:layout_constraintTop_toTopOf="@id/page_pager_container"
             app:layout_constraintBottom_toBottomOf="@id/page_pager_container"

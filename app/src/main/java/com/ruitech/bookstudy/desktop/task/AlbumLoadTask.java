@@ -37,9 +37,10 @@ public class AlbumLoadTask extends AsyncTask<Object, Object, NetworkResponse> {
         NetworkResponse ret = NetworkResponse.RESPONSE_ERROR;
         Response response;
         try {
-            response = APIUtil.getResponse(DesktopConst.getAlbumPageUrl(album));
+            response = APIUtil.getResponse(DesktopConst.getAlbumPageUrl(album), DesktopConst.getHeaderMap());
             if (response.code() == 200) {
                 JSONObject jsonObject = new JSONObject(response.body().string()).optJSONObject("data");
+                System.out.println("meng here: " + jsonObject.toString(2));
                 Album.initFromJson(album, jsonObject);
                 ret = NetworkResponse.RESPONSE_OK;
             }
@@ -54,7 +55,7 @@ public class AlbumLoadTask extends AsyncTask<Object, Object, NetworkResponse> {
 
     @Override
     protected void onPostExecute(NetworkResponse result) {
-        Log.d(TAG, "onPostExecute: " + result + " " + album.videoList.size());
+        Log.d(TAG, "doInBackground: " + result + " " + album);
         callback.onAlbumLoad(result, album);
     }
 

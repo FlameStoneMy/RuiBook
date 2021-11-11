@@ -3,6 +3,6 @@
     android:id="@+id/body_container"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-    android:background="@color/_8800ffff">
+    android:background="@color/_26ffb334">
 
 </View>

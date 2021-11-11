@@ -58,7 +58,7 @@ import me.drakeet.multitype.MultiTypeAdapter;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 
-public class BookSelectActivity extends AppCompatActivity implements IPermRequester, View.OnClickListener {
+public class BookSelectActivity extends BaseActivity implements IPermRequester, View.OnClickListener {
 
     private static final String TAG = "BookSelectActivity";
 
@@ -81,8 +81,7 @@ public class BookSelectActivity extends AppCompatActivity implements IPermReques
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color._4b8afe));
-        setContentView(R.layout.activity_book_selection);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color._4b8afe));
         findViewById(R.id.back_img).setOnClickListener(this);
         grade = (Grade) getIntent().getSerializableExtra(EXTRA_GRADE);
         subjectList = (List<Subject>) getIntent().getSerializableExtra(EXTRA_SUBJECT_LIST);
@@ -101,6 +100,11 @@ public class BookSelectActivity extends AppCompatActivity implements IPermReques
         indicator.setViewPager(subjectViewPager, new TabPagerViewPagerObserver() {
 
         }, subjectPos);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_book_selection;
     }
 
     @Override

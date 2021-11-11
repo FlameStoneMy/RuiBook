@@ -2,6 +2,7 @@ package com.ruitech.bookstudy.desktop.bean;
 
 import com.ruitech.bookstudy.bean.Poster;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;

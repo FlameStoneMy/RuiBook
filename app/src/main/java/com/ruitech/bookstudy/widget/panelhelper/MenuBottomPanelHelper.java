@@ -38,7 +38,7 @@ public class MenuBottomPanelHelper extends PartScreenBottomPanelHelper<Constrain
     }
 
     private int pagePos2MenuPos(int pagePos) {
-        int ret = -1;
+        int ret = 0;
         for (int i = 0; i < pageUIList.size(); i++) {
             if (pagePos >= pageUIList.get(i).getValue().getOrdinal()) {
                 ret = i;

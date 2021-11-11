@@ -3,6 +3,7 @@ package com.ruitech.bookstudy.desktop.bean;
 import com.ruitech.bookstudy.bean.Poster;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.LinkedList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class Album extends CommonBean {
 
+    private static final String TAG = "Album";
     public List<Poster> posterList;
     public List<Video> videoList;
 
@@ -18,7 +20,8 @@ public class Album extends CommonBean {
     }
     public static Album initFromJson(Album album, JSONObject jsonObject) {
         album.id = jsonObject.optString("id");
-        album.name = jsonObject.optString("albumName");
+        album.name = jsonObject.optString("albumName").replace("\n", "");
+        android.util.Log.d(TAG, "initFromJson: [" + album.name + "]");
 
         album.videoList = new LinkedList<>();
         JSONArray jsonArray = jsonObject.optJSONArray("videoInfos");

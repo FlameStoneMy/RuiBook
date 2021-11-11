@@ -38,4 +38,12 @@ public class App extends Application {
         ImageLoader.getInstance().init(configuration);
     }
 
+    private static boolean eyeProtectEnabled;
+    public static void toggleEyeProtect() {
+        eyeProtectEnabled = !eyeProtectEnabled;
+    }
+
+    public static boolean eyeProtectEnabled() {
+        return eyeProtectEnabled;
+    }
 }

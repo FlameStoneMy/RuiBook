@@ -3,6 +3,7 @@ package com.ruitech.bookstudy.settings;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.drawable.PaintDrawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
+import com.ruitech.bookstudy.BaseDialog;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.RuiPreferenceUtil;
 import com.ruitech.bookstudy.utils.UIHelper;
@@ -20,57 +22,58 @@ import androidx.appcompat.app.AppCompatDialog;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.appcompat.widget.SwitchCompat;
 
-public class SettingsDialog extends AppCompatDialog implements CompoundButton.OnCheckedChangeListener {
+public class SettingsDialog extends BaseDialog implements CompoundButton.OnCheckedChangeListener {
     private static final String TAG = "SettingsDialog";
 
     public SettingsDialog(Context context) {
         super(context, R.style.ThemeDialog);
 
-        Window window = getWindow();
-        window.requestFeature(Window.FEATURE_NO_TITLE);
-
-        PaintDrawable paintDrawable = new PaintDrawable();
-        paintDrawable.setCornerRadius(UIHelper.dp2px(18));
-        paintDrawable.getPaint().setColor(context.getResources().getColor(R.color._ffffff));
-        window.setBackgroundDrawable(paintDrawable);
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        View v = getLayoutInflater().inflate(R.layout.dialog_settings, null);
-
         AppCompatSeekBar speedSeekBar = v.findViewById(R.id.speed_seekbar);
-        speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            private int progress;
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "onProgressChanged: " + progress + " " + fromUser);
-                this.progress = progress;
-            }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            findViewById(R.id.adjust_speed_tv).setVisibility(View.GONE);
+            findViewById(R.id.scale1).setVisibility(View.GONE);
+            findViewById(R.id.scale2).setVisibility(View.GONE);
+            findViewById(R.id.scale3).setVisibility(View.GONE);
+            findViewById(R.id.scale4).setVisibility(View.GONE);
+            ((ViewGroup.MarginLayoutParams) findViewById(R.id.show_translation_tv).getLayoutParams()).topMargin = 0;
+            speedSeekBar.setVisibility(View.GONE);
+        } else {
+            speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                private int progress;
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                Log.d(TAG, "onStopTrackingTouch");
-                int tarProgress;
-                if (progress < 17) {
-                    tarProgress = 0;
-                } else if (progress < 49) {
-                    tarProgress = 33;
-                } else if (progress < 83) {
-                    tarProgress = 67;
-                } else {
-                    tarProgress = 100;
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    Log.d(TAG, "onProgressChanged: " + progress + " " + fromUser);
+                    this.progress = progress;
                 }
-                if (tarProgress != progress) {
-                    seekBar.setProgress(tarProgress);
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
                 }
-                RuiPreferenceUtil.setClickReadSpeed(progress2Speed(progress));
-                EventBus.getDefault().post(new ChangeSpeedEvent());
-            }
-        });
-        speedSeekBar.setProgress(speed2Progress(RuiPreferenceUtil.getClickReadSpeed()));
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    Log.d(TAG, "onStopTrackingTouch");
+                    int tarProgress;
+                    if (progress < 17) {
+                        tarProgress = 0;
+                    } else if (progress < 49) {
+                        tarProgress = 33;
+                    } else if (progress < 83) {
+                        tarProgress = 67;
+                    } else {
+                        tarProgress = 100;
+                    }
+                    if (tarProgress != progress) {
+                        seekBar.setProgress(tarProgress);
+                    }
+                    RuiPreferenceUtil.setClickReadSpeed(progress2Speed(progress));
+                    EventBus.getDefault().post(new ChangeSpeedEvent());
+                }
+            });
+            speedSeekBar.setProgress(speed2Progress(RuiPreferenceUtil.getClickReadSpeed()));
+        }
 
         SwitchCompat showTranslationSwitch = (SwitchCompat) v.findViewById(R.id.show_translation_switch);
         showTranslationSwitch.setChecked(RuiPreferenceUtil.showClickReadTranslation());
@@ -79,8 +82,20 @@ public class SettingsDialog extends AppCompatDialog implements CompoundButton.On
         SwitchCompat showBordersSwitch = (SwitchCompat) v.findViewById(R.id.show_click_read_borders_switch);
         showBordersSwitch.setChecked(RuiPreferenceUtil.showClickReadBorders());
         showBordersSwitch.setOnCheckedChangeListener(this);
+    }
 
-        setContentView(v);
+    @Override
+    protected void initWindow(Window window) {
+        PaintDrawable paintDrawable = new PaintDrawable();
+        paintDrawable.setCornerRadius(UIHelper.dp2px(18));
+        paintDrawable.getPaint().setColor(getContext().getResources().getColor(R.color._ffffff));
+        window.setBackgroundDrawable(paintDrawable);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.dialog_settings;
     }
 
     private float progress2Speed(int progress) {

@@ -7,19 +7,31 @@ import com.ruitech.bookstudy.bean.GradeCategory;
 import com.ruitech.bookstudy.guide.binder.GradeBinder;
 import com.ruitech.bookstudy.guide.binder.GradeCategoryTitleBinder;
 import com.ruitech.bookstudy.guide.task.GradeListQueryTask;
+import com.ruitech.bookstudy.guide.task.GradeListQueryWorker;
 import com.ruitech.bookstudy.guide.task.TaskCallback;
+import com.ruitech.bookstudy.homepage.HomePageQueryTask;
+import com.ruitech.bookstudy.homepage.binder.bean.GradeCalendarCard;
+import com.ruitech.bookstudy.homepage.binder.bean.SubjectTab;
+import com.ruitech.bookstudy.homepage.binder.bean.TabsCard;
 import com.ruitech.bookstudy.uibean.GradeUI;
+import com.ruitech.bookstudy.utils.APIUtil;
+import com.ruitech.bookstudy.utils.Const;
 import com.ruitech.bookstudy.utils.Executors;
 import com.ruitech.bookstudy.utils.ListUtils;
 import com.ruitech.bookstudy.utils.NetworkResponse;
+import com.ruitech.bookstudy.utils.UrlInvalidException;
 import com.ruitech.bookstudy.widget.RuiDiffUtil;
 
+import java.io.IOException;
 import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.Response;
 
-public class GradeHelper extends AbsGuideHelper implements GradeListQueryTask.Callback, GradeBinder.Callback {
+import static com.ruitech.bookstudy.utils.Executors.SIMPLE_THREAD_EXECUTOR;
+
+public class GradeHelper extends AbsGuideHelper implements GradeListQueryWorker.Callback, GradeBinder.Callback {
     private static final String TAG = "GradeHelper";
 
     public GradeHelper(RecyclerView recyclerView, TaskCallback callback) {
@@ -32,7 +44,32 @@ public class GradeHelper extends AbsGuideHelper implements GradeListQueryTask.Ca
     }
 
     public void load() {
-        new GradeListQueryTask(this).executeOnExecutor(Executors.network());
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//        Response response;
+//        try {
+//            response = APIUtil.getResponse(Const.GRADE_LIST_QUERY_URL);
+//            android.util.Log.d(TAG, "response.code(): " + response.code() + " [" + response.body().string() + "]");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (UrlInvalidException e) {
+//            e.printStackTrace();
+//        }
+//            }
+//        }).start();
+
+//        new HomePageQueryTask(Grade.FIFTH_GRADE, new HomePageQueryTask.Callback() {
+//            @Override
+//            public void onHomePageResult(NetworkResponse ret, GradeCalendarCard gradeCalendarCard, TabsCard<SubjectTab> tabsCard) {
+//
+//            }
+//        }).executeOnExecutor(Executors.network());
+
+//        new GradeListQueryTask(this).executeOnExecutor(java.util.concurrent.Executors.newSingleThreadExecutor());//SIMPLE_THREAD_EXECUTOR);
+//        new GradeListQueryTask(this).executeOnExecutor(Executors.network());
+        new GradeListQueryWorker(this).execute();
+//        android.util.Log.d(TAG, "meng here");
     }
 
     private Grade preSelectedGrade;
@@ -48,7 +85,7 @@ public class GradeHelper extends AbsGuideHelper implements GradeListQueryTask.Ca
                     Object obj = list.get(i);
                     if (obj instanceof GradeUI) {
                         if (((GradeUI) obj).getValue() == grade) {
-                            onGradeClick(i, (GradeUI) obj);
+                            onGradeSelected(i, (GradeUI) obj, false);
                             break;
                         }
                     }
@@ -78,11 +115,15 @@ public class GradeHelper extends AbsGuideHelper implements GradeListQueryTask.Ca
 
     @Override
     public void onGradeClick(int position, GradeUI gradeUI) {
-        Log.d(TAG, "onGradeClick: " + position + " " + gradeUI.getValue());
+        onGradeSelected(position, gradeUI, true);
+    }
+
+    private void onGradeSelected(int position, GradeUI gradeUI, boolean manual) {
+        Log.d(TAG, "onGradeSelected: " + position + " " + gradeUI.getValue() + " " + manual);
         RuiDiffUtil.updateSelectPos(adapter, position, currGradePos);
         currGradePos = position;
         currGrade = gradeUI.getValue();
-        if (onGradeClickListener != null) {
+        if (manual && onGradeClickListener != null) {
             onGradeClickListener.onGradeClick(gradeUI.getValue());
         }
     }

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.ruitech.bookstudy.bean.Book;
 import com.ruitech.bookstudy.settings.SettingsDialog;
+import com.ruitech.bookstudy.utils.ClickUtil;
 import com.ruitech.bookstudy.utils.StatusBarUtil;
 import com.ruitech.bookstudy.widget.IBackPressConsumer;
 import com.ruitech.bookstudy.widget.TabPageIndicator;
@@ -21,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import me.drakeet.multitype.MultiTypeAdapter;
 
-public class BookActivity extends AppCompatActivity implements View.OnClickListener {
+public class BookActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "BookActivity";
 
     private Book book;
@@ -41,8 +42,9 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.white));
-        setContentView(R.layout.activity_book);
+//        StatusBarUtil.fullScreen(this);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.white));
+//        setContentView(R.layout.activity_book);
         book = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
 
         findViewById(R.id.back_img).setOnClickListener(this);
@@ -71,12 +73,20 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.activity_book;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back_img:
                 finish();
                 break;
             case R.id.setting_img:
+                if (ClickUtil.filter()) {
+                    return;
+                }
                 new SettingsDialog(this).show();
                 break;
         }

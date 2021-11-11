@@ -1,5 +1,7 @@
 package com.ruitech.bookstudy.desktop.binder;
 
+import android.graphics.drawable.PaintDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.desktop.PlayActivity;
 import com.ruitech.bookstudy.desktop.bean.Video;
+import com.ruitech.bookstudy.utils.UIHelper;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +46,14 @@ public class VideoBinder extends ItemViewBinder<Video, VideoBinder.ViewHolder> {
             idView = itemView.findViewById(R.id.id);
             nameView = itemView.findViewById(R.id.name);
             itemView.setOnClickListener(this);
+
+            PaintDrawable paintDrawable = new PaintDrawable();
+            paintDrawable.setCornerRadius(UIHelper.dp2px(13));
+            paintDrawable.getPaint().setColor(itemView.getResources().getColor(R.color._40afd5fc));
+            itemView.setBackground(paintDrawable);
+
+//            ShapeDrawable s = new ShapeDrawable();
+//            s.setShape();
         }
 
         public void bindData(Video video) {

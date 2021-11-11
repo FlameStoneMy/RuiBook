@@ -31,14 +31,19 @@ public class GradeListQueryTask extends AsyncTask<Object, Object, NetworkRespons
 
     @Override
     protected NetworkResponse doInBackground(Object[] objects) {
+        android.util.Log.d(TAG, "meng here doInBackground");
         NetworkResponse ret = NetworkResponse.RESPONSE_ERROR;
 
         Response response;
         try {
             response = APIUtil.getResponse(Const.GRADE_LIST_QUERY_URL);
+
+            android.util.Log.d(TAG, "meng here doInBackground2");
             if (response.code() == 200) {
                 JSONArray jsonArray = new JSONObject(response.body().string()).optJSONArray("data");
                 for (int i = 0; i < jsonArray.length(); i++) {
+
+                    android.util.Log.d(TAG, "meng here doInBackground3 " + i + " " + jsonArray.length());
                     JSONObject jsonObject = jsonArray.optJSONObject(i);
                     JSONArray gradeJSONArr = jsonObject.optJSONArray("resources");
                     List<Grade> gradeList = new LinkedList<>();

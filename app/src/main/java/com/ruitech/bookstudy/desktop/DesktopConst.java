@@ -3,6 +3,11 @@ package com.ruitech.bookstudy.desktop;
 import com.ruitech.bookstudy.bean.Grade;
 import com.ruitech.bookstudy.desktop.bean.Album;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import androidx.collection.ArrayMap;
+
 import static com.ruitech.bookstudy.utils.Const.BASE_URL;
 
 public class DesktopConst {
@@ -17,5 +22,11 @@ public class DesktopConst {
     private static final String ALBUM_PAGE_URL = BASE_URL + "/videoClass/v1/albumInfo?albumId=";
     public static final String getAlbumPageUrl(Album album) {
         return ALBUM_PAGE_URL + album.id;
+    }
+
+    public static final Map<String, String> getHeaderMap() {
+        Map<String, String> map = new ArrayMap<>();
+        map.put("apiSource", "phone_flat");
+        return map;
     }
 }

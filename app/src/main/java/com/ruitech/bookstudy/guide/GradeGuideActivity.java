@@ -25,6 +25,9 @@ public class GradeGuideActivity extends AbsGuideActivity<GradeHelper> {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        findViewById(R.id.body).setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        android.util.Log.d(TAG, "meng here1");
         reload();
     }
 
@@ -51,8 +54,8 @@ public class GradeGuideActivity extends AbsGuideActivity<GradeHelper> {
     @Override
     protected void onNextClicked() {
         RuiPreferenceUtil.setGrade(guideHelper.getCurrGrade());
-//        NickNameGuideActivity.start(this);
-        DesktopActivity.start(this);
+        NickNameGuideActivity.start(this);
+//        DesktopActivity.start(this);
         finish();
     }
 }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_6308ff">
+    android:background="@drawable/bg">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/back"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="@id/back"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="名著赏析"
+        android:text=""
         android:textSize="25sp"
         android:textColor="@color/_ffffff"
         />
@@ -41,6 +41,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginLeft="56dp"
         app:radius="10dp"
+        android:scaleType="centerCrop"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -55,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0"
         android:textColor="@color/_ffffff"
         android:textSize="22sp"
-        android:text="朝花夕拾"
+        android:text=""
         android:layout_marginLeft="21dp"
         android:layout_marginRight="56dp"
         />
@@ -72,7 +73,7 @@
         app:layout_constraintHorizontal_bias="0"
         android:textColor="@color/_ffffff"
         android:textSize="12sp"
-        android:text="朝花夕拾"
+        android:text=""
         android:layout_marginLeft="21dp"
         android:layout_marginTop="18dp"
         app:layout_constraintVertical_bias="0"

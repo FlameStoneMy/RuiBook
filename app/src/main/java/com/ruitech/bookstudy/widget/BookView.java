@@ -96,7 +96,7 @@ public class BookView extends View implements ImageLoadingListener {
     private float textX, textY;
     private float loadingCenterX, loadingCenterY;
     private float loadingRadius;
-    private RectF loadingRectF = new RectF();
+    private RectF loadingRectF = new RectF(), tmpLoadingRectF = new RectF();
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         if (w > 0 && h > 0) {
@@ -128,6 +128,7 @@ public class BookView extends View implements ImageLoadingListener {
         setMeasuredDimension(measuredWidth, height);
     }
 
+    private long loadingStartTs = -1L;
     @Override
     public void onDraw(Canvas canvas) {
         canvas.drawRoundRect(book2Rect, book2Round, book2Round, book2Paint);
@@ -148,14 +149,43 @@ public class BookView extends View implements ImageLoadingListener {
         }
 
         if (loading) {
+            long currTs = System.currentTimeMillis();
+            if (loadingStartTs < 0) {
+                loadingStartTs = currTs;
+            }
+
+            long curr = (currTs - LOADING_ANIM_DURATION / 4 - loadingStartTs) % LOADING_ANIM_DURATION;
+            float y, deltaY;
+
+            if (curr < LOADING_ANIM_DURATION / 2) {
+                deltaY = - loadingRadius / 2 + loadingRadius * curr / LOADING_ANIM_DURATION / 2;
+            } else {
+                deltaY = loadingRadius / 2 - loadingRadius * curr / LOADING_ANIM_DURATION / 2;
+            }
+            y = loadingCenterY + deltaY;
+            adjustTmpLoadingRectF(deltaY);
+
             canvas.drawPath(bookPath, loadingBgPaint);
-            canvas.drawCircle(loadingCenterX, loadingCenterY, loadingRadius, loadingCirclePaint);
+            canvas.drawCircle(loadingCenterX, y, loadingRadius, loadingCirclePaint);
             ensureLoadingBitmap();
-            canvas.drawBitmap(loadingBitmap, null, loadingRectF, null);
+            canvas.drawBitmap(loadingBitmap, null, tmpLoadingRectF, null);
+
+            invalidate();
         }
 //        canvas.clipPath();
 //        canvas.drawRoundRect();
     }
+
+    private void adjustTmpLoadingRectF(float offsetY) {
+        tmpLoadingRectF.left = loadingRectF.left;
+        tmpLoadingRectF.right = loadingRectF.right;
+        tmpLoadingRectF.top = loadingRectF.top;
+        tmpLoadingRectF.bottom = loadingRectF.bottom;
+
+        tmpLoadingRectF.offset(0, offsetY);
+    }
+
+    private static final long LOADING_ANIM_DURATION = 1000L;
 
     private Book book;
     private String posterUri;

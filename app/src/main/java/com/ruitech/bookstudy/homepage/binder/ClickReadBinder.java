@@ -19,6 +19,7 @@ import com.ruitech.bookstudy.bookselect.BookSelectEvent;
 import com.ruitech.bookstudy.homepage.ISubjectListProvider;
 import com.ruitech.bookstudy.homepage.binder.bean.ClickReadCard;
 import com.ruitech.bookstudy.task.BookSelectQueryTask;
+import com.ruitech.bookstudy.utils.ClickUtil;
 import com.ruitech.bookstudy.utils.Executors;
 import com.ruitech.bookstudy.utils.ListUtils;
 import com.ruitech.bookstudy.utils.Util;
@@ -136,6 +137,10 @@ public class ClickReadBinder extends ItemViewBinder<ClickReadBinder.ClickReadCar
                     startBookSelectActivity();
                     break;
                 case R.id.action_tv:
+                    if (ClickUtil.filter()) {
+                        return;
+                    }
+
                     if (book == null) {
                         startBookSelectActivity();
                     } else {

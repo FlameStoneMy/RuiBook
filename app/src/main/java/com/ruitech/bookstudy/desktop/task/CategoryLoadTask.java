@@ -44,7 +44,7 @@ public class CategoryLoadTask extends AsyncTask<Object, Object, NetworkResponse>
                 System.out.println("meng here: " + j.toString(2));
                 JSONObject jsonObject = j.optJSONObject("data");
                 category = Category.initFromJson(jsonObject);
-                ret = NetworkResponse.RESPONSE_OK;
+                ret = category != null ? NetworkResponse.RESPONSE_OK : NetworkResponse.RESPONSE_ERROR;
             }
         } catch (IOException e) {
             ret = NetworkResponse.RESPONSE_NETWORK;
@@ -57,7 +57,6 @@ public class CategoryLoadTask extends AsyncTask<Object, Object, NetworkResponse>
 
     @Override
     protected void onPostExecute(NetworkResponse result) {
-        Log.d(TAG, "onPostExecute: " + result + " " + category.albumList.size());
         callback.onCategoryLoad(result, category);
     }
 

@@ -7,9 +7,9 @@ import com.ruitech.bookstudy.R;
 import androidx.annotation.StringRes;
 
 public enum GradeCategory {
-    PRIMARY("PRIMARY", R.string.primary),
-    JUNIOR("JUNIOR", R.string.junior),
-    SENIOR("SENIOR", R.string.senior);
+    PRIMARY("PRIMARY_GRADES", R.string.primary),
+    JUNIOR("MIDDLE_GRADES", R.string.junior),
+    SENIOR("HIGH_GRADES", R.string.senior);
 
     public final String id;
     public final @StringRes int resId;

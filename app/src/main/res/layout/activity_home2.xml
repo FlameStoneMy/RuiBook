@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_5120ec">
+    android:background="@drawable/bg">
 
     <com.ruitech.bookstudy.widget.RoundAngleTextView
         android:id="@+id/grade_select"
@@ -14,13 +14,14 @@
         app:layout_constraintTop_toTopOf="@id/title"
         app:layout_constraintBottom_toBottomOf="@id/title"
         app:bgRadius="16dp"
-        app:bgColor="@color/_ffffff"
+        app:bgColor="@color/_435fe5"
         android:drawableRight="@mipmap/drop_triangle"
+        android:drawableTint="@color/_ffffff"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="16dp"
         android:text="@string/grade_five"
-        android:textColor="@color/_479df7"
+        android:textColor="@color/_ffffff"
         android:textSize="18sp"
         android:paddingLeft="15dp"
         android:paddingRight="10dp"
@@ -41,6 +42,18 @@
         android:layout_marginTop="23dp"
         />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="@color/_ffffff"
+        android:layout_marginLeft="16dp"
+        />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/eye_protect"
         android:layout_width="38dp"
@@ -49,7 +62,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginRight="33dp"
         android:layout_marginTop="28dp"
-        android:src="@mipmap/desktop_settings"
+        android:src="@mipmap/desktop_eye_protect"
         />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -70,9 +83,9 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="20dp"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

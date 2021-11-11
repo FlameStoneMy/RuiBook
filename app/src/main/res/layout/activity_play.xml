@@ -19,41 +19,82 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="33dp"
         android:layout_marginTop="28dp"
-        android:src="@mipmap/arrow_back"
+        android:src="@mipmap/arrow_back2"
+        />
+
+    <View
+        android:id="@+id/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/action"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/progress_bar"
+        app:layout_constraintBottom_toBottomOf="@id/progress_bar"
+        android:layout_marginLeft="48dp"
+        android:src="@mipmap/pause2"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/progress_tv"
-        android:layout_width="40dp"
+        android:layout_width="90dp"
         android:layout_height="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/action"
         app:layout_constraintRight_toLeftOf="@id/progress_bar"
         app:layout_constraintTop_toTopOf="@id/progress_bar"
         app:layout_constraintBottom_toBottomOf="@id/progress_bar"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:text="00:00"
-        android:textSize="15sp"
+        android:textSize="24sp"
         android:textColor="@color/_ffffff"
-        android:gravity="center"
+        android:gravity="center_vertical|right"
         />
-    <ProgressBar
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progress_bar"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="14dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/progress_tv"-->
+<!--        app:layout_constraintRight_toLeftOf="@id/duration_tv"-->
+<!--        style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--        android:progressDrawable="@drawable/progress_horizontal_play"-->
+<!--        android:layout_marginBottom="28dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:indeterminate="false"-->
+<!--        />-->
+
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/progress_bar"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/progress_tv"
         app:layout_constraintRight_toLeftOf="@id/duration_tv"
         android:layout_marginBottom="28dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:indeterminateTint="#00d8a0"
         android:indeterminate="false"
-        />
+        android:splitTrack="false"
+        android:minHeight="14dp"
+        android:maxHeight="14dp"
+        android:thumbOffset="0dp"
+        android:progressDrawable="@drawable/progress_horizontal_play"
+        android:thumb="@drawable/thumb" >
+    </androidx.appcompat.widget.AppCompatSeekBar>
+
+
+<!--    -->
+<!--    android:indeterminateTint="@color/_ffffff"-->
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/duration_tv"
-        android:layout_width="40dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/progress_bar"
@@ -61,8 +102,8 @@
         app:layout_constraintBottom_toBottomOf="@id/progress_bar"
         android:layout_marginRight="50dp"
         android:text="00:00"
-        android:textSize="15sp"
+        android:textSize="24sp"
         android:textColor="@color/_ffffff"
-        android:gravity="center"
+        android:gravity="center_vertical|left"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

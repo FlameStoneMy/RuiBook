@@ -77,7 +77,7 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
                     outRect.left = leftSpace;
                     arr[0] = true;
                 }
-                //top raw
+                //top row
                 if (spanIndex >= childPosition && spanIndex < spanCount){
                     outRect.top = topSpace;
                     arr[1] = true;
@@ -93,8 +93,8 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
                     arr[3] = true;
                 }
 
-//                android.util.Log.d("meng here", "getItemOffsets: " + childPosition + " " + spanIndex + " " + spanCount + " " + totalCount
-//                + " " + Arrays.toString(arr));
+                android.util.Log.d("meng here", "getItemOffsets: " + childPosition + " " + spanIndex + " " + spanCount + " " + totalCount
+                + " " + Arrays.toString(arr) + " " + outRect);
 
 
 

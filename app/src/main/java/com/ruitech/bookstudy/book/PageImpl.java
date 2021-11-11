@@ -54,11 +54,11 @@ public class PageImpl {
             File coordinateFile = BookUtil.getCoordinateFile(bookId, bookGenuineId, pageNum);
             // parse Char.txt
             File translationFile = BookUtil.getTranslationFile(bookId, bookGenuineId, pageNum);
-//            Log.d(TAG, "parseCoordinate1 " + coordinateFile.getAbsolutePath() + " " + this);
+            Log.d(TAG, "parseCoordinate1 " + coordinateFile.getAbsolutePath() + " " + this);
             if (coordinateFile.exists()) {
-//                Log.d(TAG, "parseCoordinate2 " + this);
+                Log.d(TAG, "parseCoordinate2 " + this);
                 if (translationFile.exists()) {
-//                    Log.d(TAG, "parseCoordinate3 " + this);
+                    Log.d(TAG, "parseCoordinate3 " + this);
                     int num = 0;
                     ArrayList<Float> leftList = new ArrayList<>();
                     ArrayList<Float> topList = new ArrayList<>();

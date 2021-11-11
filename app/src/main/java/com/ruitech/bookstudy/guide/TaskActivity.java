@@ -6,26 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ruitech.bookstudy.BaseActivity;
 import com.ruitech.bookstudy.R;
 import com.ruitech.bookstudy.guide.task.TaskCallback;
 import com.ruitech.bookstudy.network.NetWorkGuide;
 import com.ruitech.bookstudy.network.NetworkMonitor;
 import com.ruitech.bookstudy.utils.NetworkResponse;
 import com.ruitech.bookstudy.utils.NetworkUtil;
+import com.ruitech.bookstudy.utils.StatusBarUtil;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class TaskActivity extends AppCompatActivity implements TaskCallback, View.OnClickListener {
+public abstract class TaskActivity extends BaseActivity implements TaskCallback, View.OnClickListener {
 
     private static final String TAG = "TaskActivity";
     protected View coreLayout, noNetworkLayout, errorLayout, loadingLayout;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task);
 
         ViewGroup container = findViewById(R.id.container);
         coreLayout = LayoutInflater.from(this).inflate(getCoreLayoutId(), container, false);
@@ -36,6 +37,11 @@ public abstract class TaskActivity extends AppCompatActivity implements TaskCall
         errorLayout = findViewById(R.id.error_layout);
         errorLayout.findViewById(R.id.error_action).setOnClickListener(this);
         loadingLayout = findViewById(R.id.loading_layout);
+    }
+
+    @Override
+    protected final int getLayoutId() {
+        return R.layout.activity_task;
     }
 
     protected abstract @LayoutRes int getCoreLayoutId();
