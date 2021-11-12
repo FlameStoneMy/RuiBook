@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">小睿学习</string>
+    <string name="app_name">小书宝</string>
 
     <string name="page_num">第%d页</string>
     <string name="menu">目录</string>
@@ -106,4 +106,7 @@
 
     <string name="cancel">取消</string>
     <string name="upgrading">版本升级中...</string>
+
+    <string name="settings">设置</string>
+    <string name="eye_protect">护眼模式</string>
 </resources>

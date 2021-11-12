@@ -106,4 +106,7 @@
 
     <string name="cancel">Cancel</string>
     <string name="upgrading">Upgrading...</string>
+
+    <string name="settings">Settings</string>
+    <string name="eye_protect">Eye Protect</string>
 </resources>
