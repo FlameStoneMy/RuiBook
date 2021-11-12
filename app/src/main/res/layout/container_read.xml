@@ -131,7 +131,7 @@
         app:layout_constraintTop_toTopOf="@id/consecutive_read_img"
         app:layout_constraintBottom_toTopOf="@id/menu_tv"
         app:layout_constraintVertical_chainStyle="packed"
-        android:src="@mipmap/menu" />
+        android:src="@drawable/menu_selector" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/menu_tv"
@@ -144,7 +144,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/menu"
         android:textSize="14sp"
-        android:textColor="@color/_5e5e5e"
+        android:textColor="@color/menu_text_selector"
         />
 
     <androidx.appcompat.widget.AppCompatImageView

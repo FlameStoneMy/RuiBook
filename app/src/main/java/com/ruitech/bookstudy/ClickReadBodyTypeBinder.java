@@ -189,19 +189,19 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             paintDrawable.setCornerRadius(UIHelper.dp2px(16));
             paintDrawable.getPaint().setColor(itemView.getResources().getColor(R.color._e9f4fb));
             repeatReadGuideContainer.setBackground(paintDrawable);
-            repeatReadGuideContainer.setAlpha(0F);
-//            repeatReadGuideContainer.setVisibility(View.INVISIBLE);
+//            repeatReadGuideContainer.setAlpha(0F);
+            repeatReadGuideContainer.setVisibility(View.INVISIBLE);
 
             repeatReadGuideContainer.findViewById(R.id.exit).setOnClickListener(this);
             repeatReadGuideContainer.findViewById(R.id.icon).setOnClickListener(this);
 
             repeatReadGuideTitle = repeatReadGuideContainer.findViewById(R.id.title);
 
-            overviewView.setAlpha(0F);
-//            overviewView.setVisibility(View.INVISIBLE);
+//            overviewView.setAlpha(0F);
+            overviewView.setVisibility(View.INVISIBLE);
             for (View v : playViewList) {
-//                v.setVisibility(View.INVISIBLE);
-                v.setAlpha(0F);
+                v.setVisibility(View.INVISIBLE);
+//                v.setAlpha(0F);
             }
 
             Log.d(TAG, "overviewView: " + overviewView.getHeight() + " " + UIHelper.dp2px(120));
@@ -316,15 +316,15 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
             RuiDiffUtil.onNewData(overViewAdapter, PageUI.from(pageList));
 
             if (menuItemList.isEmpty()) {
-//                menuImg.setEnabled(false);
-//                menuTv.setEnabled(false);
-                menuImg.setVisibility(View.INVISIBLE);
-                menuTv.setVisibility(View.INVISIBLE);
+                menuImg.setEnabled(false);
+                menuTv.setEnabled(false);
+//                menuImg.setVisibility(View.INVISIBLE);
+//                menuTv.setVisibility(View.INVISIBLE);
             } else {
-//                menuImg.setEnabled(true);
-//                menuTv.setEnabled(true);
-                menuImg.setVisibility(View.VISIBLE);
-                menuTv.setVisibility(View.VISIBLE);
+                menuImg.setEnabled(true);
+                menuTv.setEnabled(true);
+//                menuImg.setVisibility(View.VISIBLE);
+//                menuTv.setVisibility(View.VISIBLE);
                 getMenuBottomPanelHelper().bindData(book, menuItemList);
             }
         }
@@ -609,7 +609,7 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                     case HIDING:
                         for (View view : getOldViewList()) {
                             view.setAlpha(0F);
-//                            view.setVisibility(View.VISIBLE);
+                            view.setVisibility(View.VISIBLE);
                         }
                         break;
                 }
@@ -628,8 +628,8 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                 switch (panelState) {
                     case HIDING:
                         for (View view : newViewList) {
-//                            view.setVisibility(View.INVISIBLE);
-                            view.setAlpha(0F);
+                            view.setVisibility(View.INVISIBLE);
+//                            view.setAlpha(0F);
                         }
                         panelState = PanelState.HIDDEN;
                         for (View view : getOldViewList()) {
@@ -643,9 +643,9 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                     case SHOWING:
                         panelState = PanelState.SHOWN;
                         for (View view : getOldViewList()) {
-                            view.setAlpha(0F);
-//                            view.setAlpha(1F);
-//                            view.setVisibility(View.INVISIBLE);
+//                            view.setAlpha(0F);
+                            view.setAlpha(1F);
+                            view.setVisibility(View.INVISIBLE);
                         }
                         if (removeOld) {
                             Log.d(TAG, "bottomViewList remove2: " + (bottomViewList.size() - 1));
@@ -695,8 +695,8 @@ public class ClickReadBodyTypeBinder extends ItemViewBinder<BodyType, ClickReadB
                     bind(oldLayer, newLayer);
                     for (View view : newViewList) {
                         view.setTranslationY(overviewAnimTotal);
-//                        view.setVisibility(View.VISIBLE);
-                        view.setAlpha(1F);
+                        view.setVisibility(View.VISIBLE);
+//                        view.setAlpha(1F);
                     }
                     panelState = PanelState.SHOWING;
                     startAnimInternal();
