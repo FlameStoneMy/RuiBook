@@ -78,4 +78,9 @@ public class GuideActivity extends BaseActivity implements View.OnClickListener 
             networkMonitor = null;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

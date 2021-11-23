@@ -133,7 +133,7 @@ public class SubjectTabBinder extends ItemViewBinder<SubjectTab, SubjectTabBinde
         @Subscribe(threadMode = ThreadMode.MAIN)
         public void onEvent(BookQueryEvent bookQueryEvent) {
             android.util.Log.d(TAG, "onEvent: " + bookQueryEvent.fromType + " " + bookQueryEvent.book + " " + bookQueryEvent.state);
-            android.util.Log.d(TAG, "onEvent meng: " + needHandle(bookQueryEvent) + " " + recyclerView.isAttachedToWindow());
+            android.util.Log.d(TAG, "onEvent rui: " + needHandle(bookQueryEvent) + " " + recyclerView.isAttachedToWindow());
             if (needHandle(bookQueryEvent)) {
                 switch (bookQueryEvent.state) {
                     case START:

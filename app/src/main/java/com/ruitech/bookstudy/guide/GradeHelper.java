@@ -69,7 +69,7 @@ public class GradeHelper extends AbsGuideHelper implements GradeListQueryWorker.
 //        new GradeListQueryTask(this).executeOnExecutor(java.util.concurrent.Executors.newSingleThreadExecutor());//SIMPLE_THREAD_EXECUTOR);
 //        new GradeListQueryTask(this).executeOnExecutor(Executors.network());
         new GradeListQueryWorker(this).execute();
-//        android.util.Log.d(TAG, "meng here");
+//        android.util.Log.d(TAG, "rui here");
     }
 
     private Grade preSelectedGrade;

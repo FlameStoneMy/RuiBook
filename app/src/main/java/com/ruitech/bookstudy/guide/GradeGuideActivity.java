@@ -27,7 +27,7 @@ public class GradeGuideActivity extends AbsGuideActivity<GradeHelper> {
         super.onCreate(savedInstanceState);
 
 //        findViewById(R.id.body).setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        android.util.Log.d(TAG, "meng here1");
+        android.util.Log.d(TAG, "rui here1");
         reload();
     }
 
@@ -57,5 +57,16 @@ public class GradeGuideActivity extends AbsGuideActivity<GradeHelper> {
         NickNameGuideActivity.start(this);
 //        DesktopActivity.start(this);
         finish();
+    }
+
+    public void finish() {
+        super.finish();
+        android.util.Log.d(TAG, "rui finish");
+        new Exception().printStackTrace();
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

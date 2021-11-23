@@ -45,7 +45,7 @@ public class HomePageQueryTask extends AsyncTask<Object, Object, NetworkResponse
             response = APIUtil.getResponse(Const.getHomePageUrl(grade));
             if (response.code() == 200) {
                 JSONArray jsonArray = new JSONObject(response.body().string()).optJSONArray("data");
-                System.out.println("meng here: " + jsonArray.toString(2));
+                System.out.println("rui here: " + jsonArray.toString(2));
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     try {

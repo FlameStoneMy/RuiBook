@@ -33,7 +33,7 @@ public class SubjectTabQueryTask extends AsyncTask<Object, Object, NetworkRespon
             response = APIUtil.getResponse(oriSubjectTab.getRefreshUrl());
             if (response.code() == 200) {
                 JSONObject jsonObject = new JSONObject(response.body().string()).optJSONObject("data");
-                System.out.println("meng here: " + jsonObject.toString(2));
+                System.out.println("rui here: " + jsonObject.toString(2));
                 newSubjectTab = CardType.TAB_SUBJECT.parse(jsonObject);
 
                 ret = NetworkResponse.RESPONSE_OK;

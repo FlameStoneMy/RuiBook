@@ -93,7 +93,7 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
                     arr[3] = true;
                 }
 
-                android.util.Log.d("meng here", "getItemOffsets: " + childPosition + " " + spanIndex + " " + spanCount + " " + totalCount
+                android.util.Log.d("rui here", "getItemOffsets: " + childPosition + " " + spanIndex + " " + spanCount + " " + totalCount
                 + " " + Arrays.toString(arr) + " " + outRect);
 
 

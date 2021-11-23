@@ -219,7 +219,7 @@ public class BookSelectBinder extends ItemViewBinder<Subject, BookSelectBinder.V
                 new BookQueryTask(book, BookQueryTask.FromType.CURRENT_BOOK_CARD).executeOnExecutor(Executors.network());
             }
 
-            // meng here
+            // rui here
 //            new BookQueryTask(book).executeOnExecutor(Executors.network());
         }
 

@@ -77,11 +77,11 @@ public class GradeListQueryWorker extends RuiWorker<NetworkResponse> {
         try {
             response = APIUtil.getResponse(Const.GRADE_LIST_QUERY_URL);
 
-            Log.d(TAG, "meng here doInBackground2");
+            Log.d(TAG, "rui here doInBackground2");
             if (response.code() == 200) {
                 JSONArray jsonArray = new JSONObject(response.body().string()).optJSONArray("data");
 
-                Log.d(TAG, "meng here doInBackground3 " + jsonArray.toString(2));
+                Log.d(TAG, "rui here doInBackground3 " + jsonArray.toString(2));
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject jsonObject = jsonArray.optJSONObject(i);
@@ -123,19 +123,19 @@ public class GradeListQueryWorker extends RuiWorker<NetworkResponse> {
 
 //    @Override
 //    protected NetworkResponse doInBackground() {
-//        Log.d(TAG, "meng here doInBackground");
+//        Log.d(TAG, "rui here doInBackground");
 //        NetworkResponse ret = NetworkResponse.RESPONSE_ERROR;
 //
 //        Response response;
 //        try {
 //            response = APIUtil.getResponse(Const.GRADE_LIST_QUERY_URL);
 //
-//            Log.d(TAG, "meng here doInBackground2");
+//            Log.d(TAG, "rui here doInBackground2");
 //            if (response.code() == 200) {
 //                JSONArray jsonArray = new JSONObject(response.body().string()).optJSONArray("data");
 //                for (int i = 0; i < jsonArray.length(); i++) {
 //
-//                    Log.d(TAG, "meng here doInBackground3 " + i + " " + jsonArray.length());
+//                    Log.d(TAG, "rui here doInBackground3 " + i + " " + jsonArray.length());
 //                    JSONObject jsonObject = jsonArray.optJSONObject(i);
 //                    JSONArray gradeJSONArr = jsonObject.optJSONArray("resources");
 //                    List<Grade> gradeList = new LinkedList<>();

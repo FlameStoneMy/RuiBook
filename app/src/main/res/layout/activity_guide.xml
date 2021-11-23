@@ -55,6 +55,8 @@
         android:text="去设置"
         android:textSize="26sp"
         android:textColor="@color/_ffffff"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/_ffffff"
         app:bgRadius="35dp"
         app:layout_constraintLeft_toLeftOf="@id/body_container"
         app:layout_constraintRight_toRightOf="@id/body_container"

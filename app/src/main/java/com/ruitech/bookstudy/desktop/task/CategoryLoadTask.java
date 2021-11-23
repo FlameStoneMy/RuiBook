@@ -41,7 +41,7 @@ public class CategoryLoadTask extends AsyncTask<Object, Object, NetworkResponse>
             response = APIUtil.postResponse(DesktopConst.MODULE_PAGE_URL, sendJSONObj);
             if (response.code() == 200) {
                 JSONObject j = new JSONObject(response.body().string());
-                System.out.println("meng here: " + j.toString(2));
+                System.out.println("rui here: " + j.toString(2));
                 JSONObject jsonObject = j.optJSONObject("data");
                 category = Category.initFromJson(jsonObject);
                 ret = category != null ? NetworkResponse.RESPONSE_OK : NetworkResponse.RESPONSE_ERROR;

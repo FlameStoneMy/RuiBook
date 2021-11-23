@@ -58,4 +58,9 @@ public class NickNameGuideActivity extends AbsGuideActivity<NicknameHelper> {
         DesktopActivity.start(this);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

@@ -53,11 +53,11 @@ public class SplashActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_FINISH:
-                    android.util.Log.d(TAG, "meng here: " + RuiPreferenceUtil.getNickname());
+                    android.util.Log.d(TAG, "rui here: " + RuiPreferenceUtil.getNickname());
 //                    GradeGuideActivity.start(SplashActivity.this);
                     if (TextUtils.isEmpty(RuiPreferenceUtil.getNickname())) {
                         if (NetworkUtil.isNetWorkConnected()) {
-                            android.util.Log.d(TAG, "meng here1");
+                            android.util.Log.d(TAG, "rui here1");
                             GradeGuideActivity.start(SplashActivity.this);
 //                            NickNameGuideActivity.start(SplashActivity.this);
                         } else {
@@ -84,7 +84,7 @@ public class SplashActivity extends BaseActivity {
 //                    WindowManager windowManager = SplashActivity.this.getWindowManager();
 //                    DisplayMetrics dm = new DisplayMetrics();
 //                    windowManager.getDefaultDisplay().getMetrics(dm);
-//                    android.util.Log.d(TAG, "meng here3: " + dm.widthPixels + " " + dm.heightPixels);
+//                    android.util.Log.d(TAG, "rui here3: " + dm.widthPixels + " " + dm.heightPixels);
                     break;
             }
         }

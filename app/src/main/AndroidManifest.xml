@@ -27,9 +27,11 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".guide.GradeGuideActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".guide.NickNameGuideActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".SplashActivity"
@@ -39,8 +41,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ArbitraryActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".desktop.DesktopActivity"
-            android:screenOrientation="landscape"/>
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+        </activity>
         <activity android:name=".desktop.CategoryActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".desktop.AlbumActivity"
@@ -48,6 +61,7 @@
         <activity android:name=".desktop.PlayActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".desktop.GuideActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape"/>
         <provider
             android:name="androidx.core.content.FileProvider"

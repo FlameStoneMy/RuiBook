@@ -40,7 +40,7 @@ public class AlbumLoadTask extends AsyncTask<Object, Object, NetworkResponse> {
             response = APIUtil.getResponse(DesktopConst.getAlbumPageUrl(album), DesktopConst.getHeaderMap());
             if (response.code() == 200) {
                 JSONObject jsonObject = new JSONObject(response.body().string()).optJSONObject("data");
-                System.out.println("meng here: " + jsonObject.toString(2));
+                System.out.println("rui here: " + jsonObject.toString(2));
                 Album.initFromJson(album, jsonObject);
                 ret = NetworkResponse.RESPONSE_OK;
             }

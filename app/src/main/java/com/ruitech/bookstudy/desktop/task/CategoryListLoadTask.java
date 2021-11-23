@@ -40,7 +40,7 @@ public class CategoryListLoadTask extends AsyncTask<Object, Object, NetworkRespo
             response = APIUtil.getResponse(DesktopConst.getCategoryPageUrl(grade));
             if (response.code() == 200) {
                 JSONArray jsonArray = new JSONObject(response.body().string()).optJSONArray("data");
-//                System.out.println("meng here: " + jsonArray.toString(2));
+//                System.out.println("rui here: " + jsonArray.toString(2));
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Category c = new Category();
