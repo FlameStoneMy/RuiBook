@@ -1,6 +1,5 @@
 package com.ruitech.bookstudy.desktop;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
@@ -71,6 +70,9 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 android.util.Log.d(TAG, "onProgressChanged: " + progress + " " + fromUser);
                 this.progress = progress;
+                if (!preparing) {
+                    lastPos = progress;
+                }
                 if (fromUser) {
                     delayBottomPanelHide();
                 }
@@ -97,6 +99,7 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
         playPauseImg = findViewById(R.id.action);
         findViewById(R.id.back).setOnClickListener(this);
 
+        preparing = true;
         Uri uri = Uri.parse(video.url);
 //        Uri uri = Uri.parse("https://oss.5rs.me/oss/transcode/video/mp4/b3fc8e3fefb83281a2c1ff89686b75b3_20190109091356553.mp4");
         android.util.Log.d(TAG, "uri: " + uri.toString() + " [ " + uri.getScheme() + "]");
@@ -110,6 +113,7 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+                android.util.Log.d(TAG, "onPrepared: " + lastPos);
                 mediaPlayer = mp;
                 if (lastPos >= 0) {
                     videoView.seekTo(lastPos);
@@ -121,6 +125,8 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
 
                 seekBar.setMax(mp.getDuration());
                 durationTv.setText(DateUtil.parseDuration(mp.getDuration()));
+
+                preparing = false;
             }
         });
 
@@ -128,6 +134,11 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
             @Override
             public boolean onInfo(MediaPlayer mp, int what, int extra) {
                 android.util.Log.d(TAG, "onInfo: " + mp + " " + what + " " + extra);
+                if (what == MediaPlayer.MEDIA_INFO_AUDIO_NOT_PLAYING ||
+                        what == MediaPlayer.MEDIA_INFO_VIDEO_NOT_PLAYING) {
+                    retry();
+                    return true;
+                }
                 return false;
             }
         });
@@ -135,6 +146,13 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
             @Override
             public boolean onError(MediaPlayer mp, int what, int extra) {
                 android.util.Log.d(TAG, "onError: " + mp + " " + what + " " + extra);
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        retry();
+                    }
+                });
                 return true;
             }
         });
@@ -239,6 +257,28 @@ public class PlayActivity extends BaseActivity implements //DialogInterface.OnDi
         handler.removeCallbacksAndMessages(null);
         videoView.stopPlayback();
         mediaPlayer = null;
+    }
+
+    private boolean preparing;
+    private void retry() {
+        int lastPos = videoView.getCurrentPosition();
+        if (lastPos > 0) {
+            this.lastPos = lastPos;
+        }
+
+        android.util.Log.d(TAG, "retry: " + lastPos + " " + this.lastPos);
+        videoView.stopPlayback();
+        mediaPlayer = null;
+
+        preparing = true;
+        Uri uri = Uri.parse(video.url);
+        android.util.Log.d(TAG, "uri: " + uri.toString() + " [ " + uri.getScheme() + "]");
+        try {
+            videoView.setVideoURI(uri);
+            videoView.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 //    @Override
